@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./assets/logo/taekwondo-sbeitla.png" type="image/png" sizes="50x50">
+    <title>Parent Management - Taekwondo Sbeitla</title>
+    <link rel="stylesheet" href="./style.css">
+    <svg style="display: none;" xmlns="http://www.w3.org/2000/svg"><defs><symbol id="icon-dashboard" viewBox="0 0 24 24"><path d="M3 13H11V3H3M3 21H11V15H3M13 21H21V11H13M13 3V9H21V3" fill="currentColor"/></symbol><symbol id="icon-users" viewBox="0 0 24 24"><path d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z" fill="currentColor"/></symbol><symbol id="icon-family" viewBox="0 0 24 24"><path d="M16 4C16 2.9 16.9 2 18 2S20 2.9 20 4 19.1 6 18 6 16 5.1 16 4M6 4C6 2.9 6.9 2 8 2S10 2.9 10 4 9.1 6 8 6 6 5.1 6 4M12 8C11.4 8 11 8.4 11 9V11H9V9C9 8.4 8.6 8 8 8S7 8.4 7 9V15H9V22H11V15H13V22H15V15H17V9C17 8.4 16.6 8 16 8S15 8.4 15 9V11H13V9C13 8.4 12.6 8 12 8M4 9V15H6V22H8V9H4M16 9V22H18V15H20V9H16Z" fill="currentColor"/></symbol><symbol id="icon-register" viewBox="0 0 24 24"><path d="M19 3H14.82C14.4 1.84 13.3 1 12 1S9.6 1.84 9.18 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3M12 3C12.55 3 13 3.45 13 4S12.55 5 12 5 11 4.55 11 4 11.45 3 12 3M7 7H17V9H7V7M7 11H17V13H7V11M7 15H14V17H7V15Z" fill="currentColor"/></symbol><symbol id="icon-message" viewBox="0 0 24 24"><path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2M20 16H6L4 18V4H20V16M7 9H17V11H7V9M7 6H17V8H7V6M7 12H14V14H7V12Z" fill="currentColor"/></symbol><symbol id="icon-check" viewBox="0 0 24 24"><path d="M21 7L9 19L3.5 13.5L4.91 12.09L9 16.17L19.59 5.59L21 7Z" fill="currentColor"/></symbol><symbol id="icon-calendar" viewBox="0 0 24 24"><path d="M19 4H18V2H16V4H8V2H6V4H5C3.89 4 3 4.9 3 6V20C3 21.1 3.89 22 5 22H19C20.1 22 21 21.1 21 20V6C21 4.9 20.1 4 19 4M19 20H5V10H19V20M19 8H5V6H19V8M7 12H12V17H7V12Z" fill="currentColor"/></symbol><symbol id="icon-settings" viewBox="0 0 24 24"><path d="M12 15.5C10.07 15.5 8.5 13.93 8.5 12S10.07 8.5 12 8.5 15.5 10.07 15.5 12 13.93 15.5 12 15.5M19.43 12.97C19.47 12.65 19.5 12.33 19.5 12S19.47 11.35 19.43 11.03L21.54 9.37C21.73 9.22 21.78 8.95 21.66 8.73L19.66 5.27C19.54 5.05 19.27 4.96 19.05 5.05L16.56 6.05C16.04 5.66 15.5 5.32 14.87 5.07L14.5 2.42C14.46 2.18 14.25 2 14 2H10C9.75 2 9.54 2.18 9.5 2.42L9.13 5.07C8.5 5.32 7.96 5.66 7.44 6.05L4.95 5.05C4.73 4.96 4.46 5.05 4.34 5.27L2.34 8.73C2.21 8.95 2.27 9.22 2.46 9.37L4.57 11.03C4.53 11.35 4.5 11.67 4.5 12S4.53 12.65 4.57 12.97L2.46 14.63C2.27 14.78 2.21 15.05 2.34 15.27L4.34 18.73C4.46 18.95 4.73 19.03 4.95 18.95L7.44 17.94C7.96 18.34 8.5 18.68 9.13 18.93L9.5 21.58C9.54 21.82 9.75 22 10 22H14C14.25 22 14.46 21.82 14.5 21.58L14.87 18.93C15.5 18.67 16.04 18.34 16.56 17.94L19.05 18.95C19.27 19.03 19.54 18.95 19.66 18.73L21.66 15.27C21.78 15.05 21.73 14.78 21.54 14.63L19.43 12.97Z" fill="currentColor"/></symbol><symbol id="icon-logout" viewBox="0 0 24 24"><path d="M16 17V14H9V10H16V7L21 12L16 17M14 2C15.1 2 16 2.9 16 4V6H14V4H5V20H14V18H16V20C16 21.1 15.1 22 14 22H5C3.9 22 3 21.1 3 20V4C3 2.9 3.9 2 5 2H14Z" fill="currentColor"/></symbol></defs></svg>
+    <style>
+        .profile-photo-upload-modal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            border-radius: 8px;
+            border: 2px dashed var(--border-color);
+            margin-bottom: 15px;
+        }
+        
+        .profile-photo-preview-modal {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+            overflow: hidden;
+            border: 3px solid white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .profile-photo-preview-modal img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .parent-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            overflow: hidden;
+        }
+        
+        .parent-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo bounce-animation"><img class="logo-img" src="./assets/logo/taekwondo-sbeitla.png" alt="Taekwondo Sbeitla" /></div>
+                <h2>Taekwondo Sbeitla</h2>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="admin-dashboard.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-dashboard"/></svg></span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="student-management.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-users"/></svg></span>
+                    <span>Students</span>
+                </a>
+                <a href="parent-management.html" class="nav-item active">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-family"/></svg></span>
+                    <span>Parents</span>
+                </a>
+                <a href="pending-registrations.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-register"/></svg></span>
+                    <span>Registrations</span>
+                    <span class="message-badge" id="pendingBadge"></span>
+                </a>
+                <a href="messages.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-message"/></svg></span>
+                    <span>Messages</span>
+                    <span class="message-badge" id="sidebarMessageBadge"></span>
+                </a>
+                <a href="attendance.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-check"/></svg></span>
+                    <span>Attendance</span>
+                </a>
+                <a href="class-schedule.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-calendar"/></svg></span>
+                    <span>Schedule</span>
+                </a>
+                <a href="settings.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-settings"/></svg></span>
+                    <span>Settings</span>
+                </a>
+                <a href="index.html" class="nav-item logout">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-logout"/></svg></span>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <header class="page-header">
+                <h1>👨‍👩‍👧 Parent Management</h1>
+                <button class="btn btn-primary" id="addParentBtn">➕ Add New Parent</button>
+            </header>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2>All Parents</h2>
+                    <div class="search-box">
+                        <input type="text" id="searchParent" placeholder="Search parents...">
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="parentsList">
+                        <!-- Parents will be loaded here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Add/Edit Parent Modal -->
+    <div id="parentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add New Parent</h2>
+                <span class="close" id="closeModal">&times;</span>
+            </div>
+            <form id="parentForm">
+                <div class="modal-body">
+                    <!-- Profile Photo Upload -->
+                    <div class="profile-photo-upload-modal">
+                        <div class="profile-photo-preview-modal" id="parentPhotoPreview">
+                            👨‍👩‍👧
+                        </div>
+                        <button type="button" class="btn btn-secondary btn-small" id="uploadParentPhoto">
+                            📷 Upload Profile Photo
+                        </button>
+                        <input type="file" id="parentPhotoInput" accept="image/png, image/jpeg, image/jpg" style="display: none;">
+                        <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">
+                            Optional: Add a profile photo (PNG, JPG)
+                        </p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="parentName">Full Name *</label>
+                            <input type="text" id="parentName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="parentEmail">Email *</label>
+                            <input type="email" id="parentEmail" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="parentUsername">Username *</label>
+                            <input type="text" id="parentUsername" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="parentPassword">Password *</label>
+                            <input type="password" id="parentPassword" required minlength="6">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="parentPhone">Phone *</label>
+                        <input type="tel" id="parentPhone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Link Children (Students)</label>
+                        <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 10px;">
+                            Select which students are children of this parent. You can link multiple children.
+                        </p>
+                        <div id="studentCheckboxes" class="checkbox-group">
+                            <!-- Student checkboxes will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Parent</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script type="module" src="./script.js"></script>
+    <script type="module" src="./online-status.js"></script>
+    <script>
+        // Check if user is admin
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser || currentUser.role !== 'admin') {
+            alert('Access denied! Only administrators can view this page.');
+            window.location.href = 'index.html';
+        }
+        
+        let editingParentId = null;
+        let parentPhotoData = null;
+        
+        // Profile photo upload handler
+        document.getElementById('uploadParentPhoto').addEventListener('click', function() {
+            document.getElementById('parentPhotoInput').click();
+        });
+        
+        document.getElementById('parentPhotoInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    parentPhotoData = e.target.result;
+                    document.getElementById('parentPhotoPreview').innerHTML = `<img src="${parentPhotoData}" alt="Parent Photo">`;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                alert('⚠️ Please select a valid image file (PNG, JPG)');
+            }
+        });
+        
+        // Unique key helper based on username/email, fallback to id
+        function getParentKey(p) {
+            const u = (p && p.username) ? p.username.trim().toLowerCase() : '';
+            const e = (p && p.email) ? p.email.trim().toLowerCase() : '';
+            if (u) return `u:${u}`;
+            if (e) return `e:${e}`;
+            return `id:${p && p.id ? p.id : ''}`;
+        }
+
+        // Merge duplicate parent records (prefer richer data, union children)
+        function dedupeParents() {
+            let parents = JSON.parse(localStorage.getItem('parents') || '[]');
+            if (!Array.isArray(parents) || parents.length === 0) return;
+            const map = new Map();
+            parents.forEach(p => {
+                const key = getParentKey(p);
+                if (!map.has(key)) {
+                    map.set(key, { ...p, children: Array.isArray(p.children) ? [...new Set(p.children)] : [] });
+                } else {
+                    const cur = map.get(key);
+                    const merged = {
+                        ...cur,
+                        id: cur.id || p.id,
+                        name: p.name && p.name.length > (cur.name || '').length ? p.name : cur.name,
+                        email: cur.email || p.email || '',
+                        username: cur.username || p.username || '',
+                        password: cur.password || p.password || '',
+                        phone: cur.phone || p.phone || '',
+                        role: 'parent',
+                        joinDate: cur.joinDate || p.joinDate || new Date().toISOString(),
+                        children: Array.from(new Set([...(cur.children || []), ...(Array.isArray(p.children) ? p.children : [])])),
+                        profilePhoto: cur.profilePhoto || p.profilePhoto || null
+                    };
+                    map.set(key, merged);
+                }
+            });
+            const next = Array.from(map.values());
+            localStorage.setItem('parents', JSON.stringify(next));
+        }
+
+        // Defensive sync: ensure approved parents are present in Parent Management
+        function syncParentsFromApprovedUsers() {
+            let parents = JSON.parse(localStorage.getItem('parents') || '[]');
+            const approvedUsers = JSON.parse(localStorage.getItem('approvedUsers') || '[]');
+            const approvedParents = approvedUsers.filter(u => u.role === 'parent');
+
+            const map = new Map();
+            parents.forEach(p => map.set(getParentKey(p), { ...p }));
+
+            let changed = false;
+            approvedParents.forEach(u => {
+                const candidate = {
+                    id: u.id || Date.now().toString(),
+                    name: u.name || u.username || 'New Parent',
+                    email: u.email || '',
+                    username: u.username || '',
+                    password: u.password || '',
+                    phone: u.phone || '',
+                    children: Array.isArray(u.children) ? u.children : [],
+                    role: 'parent',
+                    joinDate: u.joinDate || new Date().toISOString(),
+                    profilePhoto: u.profilePhoto || null
+                };
+                const key = getParentKey(candidate);
+                if (map.has(key)) {
+                    const cur = map.get(key);
+                    map.set(key, {
+                        ...cur,
+                        id: cur.id || candidate.id,
+                        name: candidate.name && candidate.name.length > (cur.name || '').length ? candidate.name : cur.name,
+                        email: cur.email || candidate.email,
+                        username: cur.username || candidate.username,
+                        password: cur.password || candidate.password,
+                        phone: cur.phone || candidate.phone,
+                        children: Array.from(new Set([...(cur.children || []), ...(candidate.children || [])])),
+                        role: 'parent',
+                        joinDate: cur.joinDate || candidate.joinDate,
+                        profilePhoto: cur.profilePhoto || candidate.profilePhoto
+                    });
+                } else {
+                    map.set(key, candidate);
+                }
+                changed = true;
+            });
+
+            if (changed) {
+                const next = Array.from(map.values());
+                localStorage.setItem('parents', JSON.stringify(next));
+            }
+            // Final pass to ensure no duplicates remain
+            dedupeParents();
+        }
+
+        // Load all parents
+        function loadParents() {
+            // Ensure parents list includes any approved users and remove duplicates
+            syncParentsFromApprovedUsers();
+            dedupeParents();
+            const parents = JSON.parse(localStorage.getItem('parents') || '[]');
+            const parentsList = document.getElementById('parentsList');
+            
+            if (parents.length === 0) {
+                parentsList.innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: var(--text-secondary);">
+                        <div style="font-size: 48px; margin-bottom: 15px;">👨‍👩‍👧</div>
+                        <p>No parents registered yet</p>
+                        <p style="font-size: 14px;">Click "Add New Parent" to register a parent</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            parentsList.innerHTML = parents.map(parent => {
+                const children = parent.children || [];
+                const needsLinking = parent.pendingChildrenInfo && parent.pendingChildrenInfo.length > 0 && children.length === 0;
+                
+                // Generate avatar HTML with photo support
+                const avatarHTML = parent.profilePhoto 
+                    ? `<div class="parent-avatar"><img src="${parent.profilePhoto}" alt="${parent.name}"></div>`
+                    : `<div class="parent-avatar">👨‍👩‍👧</div>`;
+                
+                return `
+                    <div class="parent-card ${needsLinking ? 'needs-linking' : ''}">
+                        ${needsLinking ? `
+                            <div class="needs-linking-banner">
+                                ⚠️ ACTION REQUIRED: This parent has ${parent.pendingChildrenInfo.length} child(ren) waiting to be linked. Click "Link Children" to connect them.
+                            </div>
+                        ` : ''}
+                        <div class="parent-header">
+                            ${avatarHTML}
+                            <div class="parent-info">
+                                <h3>${parent.name}</h3>
+                                <p>${parent.email}</p>
+                                <p>Username: ${parent.username}</p>
+                                <p>Phone: ${parent.phone}</p>
+                            </div>
+                        </div>
+                        <div class="parent-children">
+                            <h4>Linked Children (${children.length}):</h4>
+                            ${children.length > 0 ? `
+                                <ul>
+                                    ${children.map(childId => {
+                                        const child = getStudentById(childId);
+                                        return child ? `<li>👤 ${child.name} - ${child.beltRank || 'White'} Belt</li>` : '';
+                                    }).join('')}
+                                </ul>
+                            ` : '<p style="color: var(--text-secondary); font-size: 14px;">No children linked yet</p>'}
+                            ${needsLinking ? `
+                                <div style="margin-top: 10px; padding: 10px; background: #fef3c7; border-radius: 6px; border-left: 3px solid #f59e0b;">
+                                    <p style="margin: 0; font-size: 13px; color: #92400e;">
+                                        <strong>Pending Children Info:</strong>
+                                    </p>
+                                    <ul style="margin: 5px 0 0 20px; font-size: 13px; color: #92400e;">
+                                        ${parent.pendingChildrenInfo.map(child => `<li>${child.name}${child.email ? ` (${child.email})` : ''}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            ` : ''}
+                        </div>
+                        <div class="parent-actions">
+                            <button class="btn ${needsLinking ? 'btn-warning' : 'btn-secondary'} btn-small" onclick="editParent('${parent.id}')">
+                                ${needsLinking ? '🔗 Link Children' : '✏️ Edit'}
+                            </button>
+                            <button class="btn btn-danger btn-small" onclick="deleteParent('${parent.id}')">🗑️ Delete</button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // Get student by ID
+        function getStudentById(id) {
+            const students = JSON.parse(localStorage.getItem('students') || '[]');
+            return students.find(s => s.id === id);
+        }
+        
+        // Load students for checkbox selection
+        function loadStudentCheckboxes(selectedChildren = [], pendingChildrenInfo = []) {
+            const students = JSON.parse(localStorage.getItem('students') || '[]');
+            const container = document.getElementById('studentCheckboxes');
+            
+            if (students.length === 0) {
+                container.innerHTML = '<p style="color: var(--text-secondary); font-size: 14px;">No students available. Please add students first.</p>';
+                return;
+            }
+            
+            // Helper to find matching students
+            function findMatch(childInfo) {
+                return students.find(s => {
+                    if (childInfo.email && s.email && childInfo.email.toLowerCase() === s.email.toLowerCase()) return true;
+                    if (childInfo.name && s.name && childInfo.name.toLowerCase() === s.name.toLowerCase()) return true;
+                    return false;
+                });
+            }
+            
+            // Build suggested matches
+            const suggestedMatches = new Set();
+            if (pendingChildrenInfo && pendingChildrenInfo.length > 0) {
+                pendingChildrenInfo.forEach(childInfo => {
+                    const match = findMatch(childInfo);
+                    if (match) {
+                        suggestedMatches.add(match.id);
+                    }
+                });
+            }
+            
+            container.innerHTML = students.map(student => {
+                const isSuggested = suggestedMatches.has(student.id);
+                const isSelected = selectedChildren.includes(student.id);
+                
+                return `
+                    <label class="checkbox-label ${isSuggested ? 'suggested-match' : ''}">
+                        <input type="checkbox" name="children" value="${student.id}" 
+                            ${isSelected ? 'checked' : ''}>
+                        <span>
+                            ${student.name} - ${student.beltRank || 'White'} Belt
+                            ${isSuggested ? ' <span style="color: #16a34a; font-weight: 600;">✓ Suggested Match</span>' : ''}
+                        </span>
+                    </label>
+                `;
+            }).join('');
+        }
+        
+        // Open modal for adding parent
+        document.getElementById('addParentBtn').addEventListener('click', function() {
+            editingParentId = null;
+            parentPhotoData = null;
+            document.getElementById('modalTitle').textContent = 'Add New Parent';
+            document.getElementById('parentForm').reset();
+            document.getElementById('parentPhotoPreview').innerHTML = '👨‍👩‍👧';
+            loadStudentCheckboxes();
+            document.getElementById('parentModal').classList.add('active');
+        });
+        
+        // Edit parent
+        window.editParent = function(id) {
+            const parents = JSON.parse(localStorage.getItem('parents') || '[]');
+            const parent = parents.find(p => p.id === id);
+            
+            if (!parent) return;
+            
+            editingParentId = id;
+            parentPhotoData = parent.profilePhoto || null;
+            
+            const needsLinking = parent.pendingChildrenInfo && parent.pendingChildrenInfo.length > 0 && (!parent.children || parent.children.length === 0);
+            document.getElementById('modalTitle').textContent = needsLinking ? 'Link Children to Parent' : 'Edit Parent';
+            document.getElementById('parentName').value = parent.name;
+            document.getElementById('parentEmail').value = parent.email;
+            document.getElementById('parentUsername').value = parent.username;
+            document.getElementById('parentPassword').value = parent.password;
+            document.getElementById('parentPhone').value = parent.phone;
+            
+            // Set photo preview
+            if (parent.profilePhoto) {
+                document.getElementById('parentPhotoPreview').innerHTML = `<img src="${parent.profilePhoto}" alt="Parent Photo">`;
+            } else {
+                document.getElementById('parentPhotoPreview').innerHTML = '👨‍👩‍👧';
+            }
+            
+            loadStudentCheckboxes(parent.children || [], parent.pendingChildrenInfo || []);
+            document.getElementById('parentModal').classList.add('active');
+        };
+        
+        // Delete parent
+        window.deleteParent = function(id) {
+            if (!confirm('Are you sure you want to delete this parent? This action cannot be undone.')) {
+                return;
+            }
+            
+            const allParents = JSON.parse(localStorage.getItem('parents') || '[]');
+            const target = allParents.find(p => p.id === id) || {};
+            const delUserKey = getParentKey(target);
+            const remainingParents = allParents.filter(p => p.id !== id);
+            localStorage.setItem('parents', JSON.stringify(remainingParents));
+
+            // Also remove from approved users (by id and by username/email key)
+            let approvedUsers = JSON.parse(localStorage.getItem('approvedUsers') || '[]');
+            approvedUsers = approvedUsers.filter(u => {
+                const key = getParentKey(u || {});
+                return u.id !== id && key !== delUserKey;
+            });
+            localStorage.setItem('approvedUsers', JSON.stringify(approvedUsers));
+
+            // Allow re-registration with the same credentials
+            try {
+                const norm = v => (v === undefined || v === null) ? '' : String(v).trim().toLowerCase();
+                const targetUsername = target && target.username ? norm(target.username) : '';
+                const targetEmail = target && target.email ? norm(target.email) : '';
+                const allowList = JSON.parse(localStorage.getItem('allowReRegister') || '[]');
+                const exists = allowList.find(e => (e.username && norm(e.username) === targetUsername) || (e.email && norm(e.email) === targetEmail));
+                if (!exists && (targetUsername || targetEmail)) {
+                    allowList.push({ username: targetUsername, email: targetEmail, role: 'parent' });
+                    localStorage.setItem('allowReRegister', JSON.stringify(allowList));
+                }
+            } catch (_) {}
+            
+            alert('✅ Parent deleted successfully!');
+            loadParents();
+        };
+        
+        // Close modal
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('parentModal').classList.remove('active');
+        });
+        
+        document.getElementById('cancelBtn').addEventListener('click', function() {
+            document.getElementById('parentModal').classList.remove('active');
+        });
+        
+        // Form submission
+        document.getElementById('parentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('parentName').value;
+            const email = document.getElementById('parentEmail').value;
+            const username = document.getElementById('parentUsername').value;
+            const password = document.getElementById('parentPassword').value;
+            const phone = document.getElementById('parentPhone').value;
+            
+            // Get selected children
+            const checkboxes = document.querySelectorAll('input[name="children"]:checked');
+            const children = Array.from(checkboxes).map(cb => cb.value);
+            
+            let parents = JSON.parse(localStorage.getItem('parents') || '[]');
+            const candidate = {
+                id: editingParentId || Date.now().toString(),
+                name,
+                email,
+                username,
+                password,
+                phone,
+                children,
+                role: 'parent',
+                joinDate: new Date().toISOString(),
+                profilePhoto: parentPhotoData
+            };
+
+            // Upsert into parents by username/email
+            const key = getParentKey(candidate);
+            const idx = parents.findIndex(p => getParentKey(p) === key || p.id === editingParentId);
+            if (idx !== -1) {
+                // Clear pendingChildrenInfo when linking is done
+                const existingParent = parents[idx];
+                parents[idx] = {
+                    ...existingParent,
+                    ...candidate,
+                    children: Array.from(new Set([...(existingParent.children || []), ...children])),
+                    pendingChildrenInfo: children.length > 0 ? undefined : existingParent.pendingChildrenInfo
+                };
+            } else {
+                parents.push(candidate);
+            }
+            dedupeParents();
+            
+            localStorage.setItem('parents', JSON.stringify(parents));
+            
+            // Upsert into approvedUsers
+            let approvedUsers = JSON.parse(localStorage.getItem('approvedUsers') || '[]');
+            const aIdx = approvedUsers.findIndex(u => getParentKey(u) === key);
+            if (aIdx !== -1) {
+                approvedUsers[aIdx] = { ...approvedUsers[aIdx], ...candidate, role: 'parent' };
+            } else {
+                approvedUsers.push({ ...candidate, role: 'parent' });
+            }
+            // Deduplicate approvedUsers by username/email
+            const aMap = new Map();
+            approvedUsers.forEach(u => {
+                const k = getParentKey(u);
+                if (!aMap.has(k)) aMap.set(k, u);
+                else aMap.set(k, { ...aMap.get(k), ...u });
+            });
+            approvedUsers = Array.from(aMap.values());
+            localStorage.setItem('approvedUsers', JSON.stringify(approvedUsers));
+
+            const message = children.length > 0 
+                ? `✅ Parent saved successfully! ${children.length} child(ren) have been linked.`
+                : '✅ Parent saved successfully!';
+            alert(message);
+            document.getElementById('parentModal').classList.remove('active');
+            loadParents();
+        });
+        
+        // Search functionality
+        document.getElementById('searchParent').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const parentCards = document.querySelectorAll('.parent-card');
+            
+            parentCards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                card.style.display = text.includes(searchTerm) ? 'block' : 'none';
+            });
+        });
+        
+        // Update pending badge
+        function updatePendingBadge() {
+            const registrations = JSON.parse(localStorage.getItem('pendingRegistrations') || '[]');
+            const pending = registrations.filter(r => r.status === 'pending').length;
+            const badge = document.getElementById('pendingBadge');
+            if (badge) {
+                badge.textContent = pending > 0 ? pending : '';
+            }
+        }
+        
+        // Load parents on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadParents();
+            updatePendingBadge();
+        });
+    </script>
+    
+    <style>
+        .parent-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .parent-card.needs-linking {
+            border-left: 4px solid #f59e0b;
+            background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+        }
+        
+        .needs-linking-banner {
+            background: #f59e0b;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .parent-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .parent-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .parent-info {
+            flex: 1;
+        }
+        
+        .parent-info h3 {
+            font-size: 18px;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+        
+        .parent-info p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin: 3px 0;
+        }
+        
+        .parent-children {
+            margin-bottom: 15px;
+        }
+        
+        .parent-children h4 {
+            font-size: 16px;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+        
+        .parent-children ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .parent-children li {
+            padding: 8px 0;
+            color: var(--text-primary);
+            font-size: 14px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .parent-children li:last-child {
+            border-bottom: none;
+        }
+        
+        .parent-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .checkbox-label.suggested-match {
+            background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+            border: 2px solid #16a34a;
+        }
+        
+        .checkbox-label:hover {
+            background: linear-gradient(135deg, #e2e8f0 0%, #f8fafc 100%);
+        }
+        
+        .checkbox-label.suggested-match:hover {
+            background: linear-gradient(135deg, #bbf7d0 0%, #86efac 100%);
+        }
+        
+        .checkbox-label input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        
+        .checkbox-label span {
+            font-size: 14px;
+            color: var(--text-primary);
+        }
+        
+        .btn-warning {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+        }
+        
+        .btn-warning:hover {
+            background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+        }
+    </style>
+</body>
+
+</html>

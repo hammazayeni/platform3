@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./assets/logo/taekwondo-sbeitla.png" type="image/png" sizes="50x50">
+    <title>Taekwondo Sbeitla - Login</title>
+    <link rel="stylesheet" href="./style.css">
+    <svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <symbol id="icon-taekwondo" viewBox="0 0 24 24">
+                <path d="M12 2C10.9 2 10 2.9 10 4C10 5.1 10.9 6 12 6C13.1 6 14 5.1 14 4C14 2.9 13.1 2 12 2M15.9 8.1C15.5 7.7 14.8 7.7 14.4 8.1L12 10.5L9.6 8.1C9.2 7.7 8.5 7.7 8.1 8.1C7.7 8.5 7.7 9.2 8.1 9.6L10 11.5V15L8 20H10L12 16L14 20H16L14 15V11.5L15.9 9.6C16.3 9.2 16.3 8.5 15.9 8.1M6 18C6 18 4 13 4 11C4 9.9 4.9 9 6 9V18M18 18V9C19.1 9 20 9.9 20 11C20 13 18 18 18 18Z" fill="currentColor"/>
+            </symbol>
+            <symbol id="icon-users" viewBox="0 0 24 24">
+                <path d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z" fill="currentColor"/>
+            </symbol>
+        </defs>
+    </svg>
+</head>
+
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="logo bounce-animation"><img class="logo-img" src="./assets/logo/taekwondo-sbeitla.png" alt="Taekwondo Sbeitla" /></div>
+                <h1>Taekwondo Sbeitla</h1>
+                <p>E-Learning & Management Platform</p>
+            </div>
+            
+            <!-- Step 1: Email/Username -->
+            <form class="login-form" id="loginFormStep1">
+                <div class="form-group">
+                    <label for="username">Email or Username</label>
+                    <input type="text" id="username" placeholder="Enter your email or username" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary animated-button">Next</button>
+                
+                <div class="login-footer">
+                    <a href="landing.html" class="back-link">← Back to Home</a>
+                </div>
+            </form>
+
+            <!-- Step 2: Profile Image and Password (Hidden Initially) -->
+            <div class="login-form" id="loginFormStep2" style="display: none;">
+                <div class="profile-preview">
+                    <div class="profile-preview-avatar" id="profilePreviewAvatar">
+                        <svg width="48" height="48"><use href="#icon-users"/></svg>
+                    </div>
+                    <h3 id="profilePreviewName">User Name</h3>
+                    <p id="profilePreviewRole">Role</p>
+                </div>
+
+                <form id="passwordForm">
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter your password" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary animated-button">Login</button>
+                    
+                    <div class="login-footer">
+                        <a href="#" class="back-link" id="backToStep1">← Back</a>
+                    </div>
+                </form>
+            </div>
+
+            
+        </div>
+    </div>
+    
+    <script type="module" src="./script.js"></script>
+    <script>
+        // Generate unique admin ID
+        function generateAdminId(username) {
+            return `admin_${username}_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+        }
+        
+        // Ensure admin has unique ID
+        function ensureAdminId(user) {
+            if (user.role === 'admin' && !user.adminId) {
+                const adminIds = JSON.parse(localStorage.getItem('adminIds') || '{}');
+                
+                if (adminIds[user.username]) {
+                    user.adminId = adminIds[user.username];
+                } else {
+                    user.adminId = user.id || generateAdminId(user.username);
+                    adminIds[user.username] = user.adminId;
+                    localStorage.setItem('adminIds', JSON.stringify(adminIds));
+                }
+                
+                let approvedUsers = JSON.parse(localStorage.getItem('approvedUsers') || '[]');
+                const userIndex = approvedUsers.findIndex(u => u.username === user.username && u.role === 'admin');
+                if (userIndex !== -1) {
+                    approvedUsers[userIndex].adminId = user.adminId;
+                    localStorage.setItem('approvedUsers', JSON.stringify(approvedUsers));
+                }
+            }
+            return user;
+        }
+        
+        // Two-step login process
+        const step1Form = document.getElementById('loginFormStep1');
+        const step2Container = document.getElementById('loginFormStep2');
+        const passwordForm = document.getElementById('passwordForm');
+        const backBtn = document.getElementById('backToStep1');
+
+        let selectedUserType = '';
+        let selectedUsername = '';
+        let selectedUser = null;
+
+        // Get all users (default + approved + fallback students/parents)
+        function getAllUsers() {
+            const defaultUsers = {
+                admin: {
+                    username: 'admin',
+                    password: 'admin123',
+                    role: 'admin',
+                    name: 'Master Admin',
+                    image: null,
+                    id: 'admin-default'
+                },
+                student: {
+                    username: 'student',
+                    password: 'student123',
+                    role: 'student',
+                    name: 'John Doe',
+                    image: null
+                },
+                parent: {
+                    username: 'parent',
+                    password: 'parent123',
+                    role: 'parent',
+                    name: 'Parent User',
+                    image: null
+                }
+            };
+
+            const approvedUsers = JSON.parse(localStorage.getItem('approvedUsers') || '[]');
+            const students = JSON.parse(localStorage.getItem('students') || '[]');
+            const parents = JSON.parse(localStorage.getItem('parents') || '[]');
+
+            const allUsers = { ...defaultUsers };
+
+            // Primary source for login: approvedUsers
+            approvedUsers.forEach(user => {
+                if (user && user.username) {
+                    allUsers[user.username] = user;
+                }
+            });
+
+            // Fallback sources: students and parents (in case sync missed)
+            students.forEach(s => {
+                if (s && s.username && !allUsers[s.username]) {
+                    allUsers[s.username] = { ...s, role: 'student' };
+                }
+            });
+            parents.forEach(p => {
+                if (p && p.username && !allUsers[p.username]) {
+                    allUsers[p.username] = { ...p, role: 'parent' };
+                }
+            });
+
+            return allUsers;
+        }
+
+        // Step 1: Username/Email with auto role detection
+        step1Form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            selectedUsername = document.getElementById('username').value.trim();
+            
+            const allUsers = getAllUsers();
+            
+            let foundUser = null;
+            const norm = v => (v === undefined || v === null) ? '' : String(v).trim().toLowerCase();
+            const targetUser = norm(selectedUsername);
+            for (let key in allUsers) {
+                const user = allUsers[key];
+                const uUser = norm(user.username);
+                const uEmail = norm(user.email);
+                if (targetUser && (uUser === targetUser || uEmail === targetUser)) {
+                    foundUser = user;
+                    break;
+                }
+            }
+            
+            if (foundUser) {
+                selectedUser = foundUser;
+                selectedUserType = foundUser.role || 'student';
+                
+                // Load profile image based on role and user ID
+                if (selectedUserType === 'admin' && foundUser.id) {
+                    const adminProfiles = JSON.parse(localStorage.getItem('adminProfiles') || '{}');
+                    const adminProfile = adminProfiles[foundUser.id];
+                    
+                    if (adminProfile) {
+                        if (adminProfile.image) selectedUser.image = adminProfile.image;
+                        if (adminProfile.name) selectedUser.name = adminProfile.name;
+                    }
+                } else if (selectedUserType === 'student') {
+                    // Load student profile image from students array
+                    const students = JSON.parse(localStorage.getItem('students') || '[]');
+                    const studentData = students.find(s => 
+                        s.username === selectedUsername || 
+                        s.email === selectedUsername ||
+                        s.id === foundUser.id
+                    );
+                    if (studentData && studentData.profilePhoto) {
+                        selectedUser.image = studentData.profilePhoto;
+                    }
+                } else if (selectedUserType === 'parent') {
+                    // Load parent profile image from parents array
+                    const parents = JSON.parse(localStorage.getItem('parents') || '[]');
+                    const parentData = parents.find(p => 
+                        p.username === selectedUsername || 
+                        p.email === selectedUsername ||
+                        p.id === foundUser.id
+                    );
+                    if (parentData && parentData.profilePhoto) {
+                        selectedUser.image = parentData.profilePhoto;
+                    }
+                }
+                
+                // Show profile preview with image
+                const avatarEl = document.getElementById('profilePreviewAvatar');
+                if (selectedUser.image) {
+                    avatarEl.innerHTML = `<img src="${selectedUser.image}" alt="${selectedUser.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
+                } else {
+                    avatarEl.innerHTML = selectedUserType === 'admin' ? '👨‍🏫' : selectedUserType === 'student' ? '👤' : '👨‍👩‍👧';
+                }
+                
+                document.getElementById('profilePreviewName').textContent = selectedUser.name;
+                document.getElementById('profilePreviewRole').textContent = selectedUserType.charAt(0).toUpperCase() + selectedUserType.slice(1);
+                
+                // Switch to step 2
+                step1Form.style.display = 'none';
+                step2Container.style.display = 'block';
+                document.getElementById('password').focus();
+            } else {
+                // Fallback search without role: students then parents
+                const students = JSON.parse(localStorage.getItem('students') || '[]');
+                const parents = JSON.parse(localStorage.getItem('parents') || '[]');
+                const studentMatch = students.find(s => norm(s.username) === targetUser || norm(s.email) === targetUser);
+                const parentMatch = parents.find(p => norm(p.username) === targetUser || norm(p.email) === targetUser);
+                if (studentMatch) {
+                    selectedUser = { ...studentMatch, role: 'student' };
+                    selectedUserType = 'student';
+                } else if (parentMatch) {
+                    selectedUser = { ...parentMatch, role: 'parent' };
+                    selectedUserType = 'parent';
+                }
+
+                if (selectedUser) {
+                    const avatarEl = document.getElementById('profilePreviewAvatar');
+                    if (selectedUser.profilePhoto) {
+                        avatarEl.innerHTML = `<img src="${selectedUser.profilePhoto}" alt="${selectedUser.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
+                    } else {
+                        avatarEl.innerHTML = selectedUserType === 'student' ? '👤' : '👨‍👩‍👧';
+                    }
+                    document.getElementById('profilePreviewName').textContent = selectedUser.name || selectedUser.username || 'User';
+                    document.getElementById('profilePreviewRole').textContent = selectedUserType.charAt(0).toUpperCase() + selectedUserType.slice(1);
+                    step1Form.style.display = 'none';
+                    step2Container.style.display = 'block';
+                    document.getElementById('password').focus();
+                } else {
+                    alert('User not found! Please check your email/username or contact your administrator.');
+                }
+            }
+        });
+
+        // Step 2: Password
+        passwordForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const password = document.getElementById('password').value;
+            const norm = v => (v === undefined || v === null) ? '' : String(v).trim().toLowerCase();
+            const targetUser = norm(selectedUsername);
+            const targetRole = norm(selectedUserType);
+            
+            if (selectedUser && selectedUser.password === password) {
+                // Enrich student login with full profile from students storage
+                if (targetRole === 'student') {
+                    try {
+                        const students = JSON.parse(localStorage.getItem('students') || '[]');
+                        const candidate = students.find(s => {
+                            const su = norm(s.username);
+                            const se = norm(s.email);
+                            const sid = s.id ? String(s.id) : '';
+                            const fid = selectedUser.id ? String(selectedUser.id) : '';
+                            return (targetUser && (su === targetUser || se === targetUser)) || (sid && fid && sid === fid);
+                        });
+                        if (candidate) {
+                            selectedUser = { ...candidate, role: 'student' };
+                        }
+                    } catch (_) {}
+                }
+                // Enrich parent login with full profile from parents storage
+                if (targetRole === 'parent') {
+                    try {
+                        const parents = JSON.parse(localStorage.getItem('parents') || '[]');
+                        const candidate = parents.find(p => {
+                            const pu = norm(p.username);
+                            const pe = norm(p.email);
+                            const pid = p.id ? String(p.id) : '';
+                            const fid = selectedUser.id ? String(selectedUser.id) : '';
+                            return (targetUser && (pu === targetUser || pe === targetUser)) || (pid && fid && pid === fid);
+                        });
+                        if (candidate) {
+                            selectedUser = { ...candidate, role: 'parent' };
+                        }
+                    } catch (_) {}
+                }
+                selectedUser = ensureAdminId(selectedUser);
+                localStorage.setItem('currentUser', JSON.stringify(selectedUser));
+                
+                // Redirect based on role
+                if (targetRole === 'admin') {
+                    window.location.href = 'admin-dashboard.html';
+                } else if (targetRole === 'student') {
+                    window.location.href = 'student-dashboard.html';
+                } else if (targetRole === 'parent') {
+                    window.location.href = 'parent-dashboard.html';
+                }
+            } else {
+                // Fallback: if student selected, try password from students array in case approvedUsers copy lacked it
+                if (targetRole === 'student') {
+                    try {
+                        const students = JSON.parse(localStorage.getItem('students') || '[]');
+                        const candidate = students.find(s => {
+                            const su = norm(s.username);
+                            const se = norm(s.email);
+                            return targetUser && (su === targetUser || se === targetUser);
+                        });
+                        if (candidate && candidate.password === password) {
+                            const resolved = { ...candidate, role: 'student' };
+                            localStorage.setItem('currentUser', JSON.stringify(resolved));
+                            window.location.href = 'student-dashboard.html';
+                            return;
+                        }
+                    } catch (_) {}
+                }
+                // Fallback: if parent selected, try password from parents array
+                if (targetRole === 'parent') {
+                    try {
+                        const parents = JSON.parse(localStorage.getItem('parents') || '[]');
+                        const candidate = parents.find(p => {
+                            const pu = norm(p.username);
+                            const pe = norm(p.email);
+                            return targetUser && (pu === targetUser || pe === targetUser);
+                        });
+                        if (candidate && candidate.password === password) {
+                            const resolved = { ...candidate, role: 'parent' };
+                            localStorage.setItem('currentUser', JSON.stringify(resolved));
+                            window.location.href = 'parent-dashboard.html';
+                            return;
+                        }
+                    } catch (_) {}
+                }
+                alert('Invalid password! Please try again.');
+                document.getElementById('password').value = '';
+            }
+        });
+
+        // Back button
+        backBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            step2Container.style.display = 'none';
+            step1Form.style.display = 'block';
+            document.getElementById('password').value = '';
+            selectedUser = null;
+        });
+    </script>
+    
+</body>
+
+</html>

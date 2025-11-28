@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./assets/logo/taekwondo-sbeitla.png" type="image/png" sizes="50x50">
+    <title>Student Management - Taekwondo Sbeitla</title>
+    <link rel="stylesheet" href="./style.css">
+    <svg style="display: none;" xmlns="http://www.w3.org/2000/svg"><defs><symbol id="icon-dashboard" viewBox="0 0 24 24"><path d="M3 13H11V3H3M3 21H11V15H3M13 21H21V11H13M13 3V9H21V3" fill="currentColor"/></symbol><symbol id="icon-users" viewBox="0 0 24 24"><path d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z" fill="currentColor"/></symbol><symbol id="icon-family" viewBox="0 0 24 24"><path d="M16 4C16 2.9 16.9 2 18 2S20 2.9 20 4 19.1 6 18 6 16 5.1 16 4M6 4C6 2.9 6.9 2 8 2S10 2.9 10 4 9.1 6 8 6 6 5.1 6 4M12 8C11.4 8 11 8.4 11 9V11H9V9C9 8.4 8.6 8 8 8S7 8.4 7 9V15H9V22H11V15H13V22H15V15H17V9C17 8.4 16.6 8 16 8S15 8.4 15 9V11H13V9C13 8.4 12.6 8 12 8M4 9V15H6V22H8V9H4M16 9V22H18V15H20V9H16Z" fill="currentColor"/></symbol><symbol id="icon-message" viewBox="0 0 24 24"><path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2M20 16H6L4 18V4H20V16M7 9H17V11H7V9M7 6H17V8H7V6M7 12H14V14H7V12Z" fill="currentColor"/></symbol><symbol id="icon-check" viewBox="0 0 24 24"><path d="M21 7L9 19L3.5 13.5L4.91 12.09L9 16.17L19.59 5.59L21 7Z" fill="currentColor"/></symbol><symbol id="icon-calendar" viewBox="0 0 24 24"><path d="M19 4H18V2H16V4H8V2H6V4H5C3.89 4 3 4.9 3 6V20C3 21.1 3.89 22 5 22H19C20.1 22 21 21.1 21 20V6C21 4.9 20.1 4 19 4M19 20H5V10H19V20M19 8H5V6H19V8M7 12H12V17H7V12Z" fill="currentColor"/></symbol><symbol id="icon-settings" viewBox="0 0 24 24"><path d="M12 15.5C10.07 15.5 8.5 13.93 8.5 12S10.07 8.5 12 8.5 15.5 10.07 15.5 12 13.93 15.5 12 15.5M19.43 12.97C19.47 12.65 19.5 12.33 19.5 12S19.47 11.35 19.43 11.03L21.54 9.37C21.73 9.22 21.78 8.95 21.66 8.73L19.66 5.27C19.54 5.05 19.27 4.96 19.05 5.05L16.56 6.05C16.04 5.66 15.5 5.32 14.87 5.07L14.5 2.42C14.46 2.18 14.25 2 14 2H10C9.75 2 9.54 2.18 9.5 2.42L9.13 5.07C8.5 5.32 7.96 5.66 7.44 6.05L4.95 5.05C4.73 4.96 4.46 5.05 4.34 5.27L2.34 8.73C2.21 8.95 2.27 9.22 2.46 9.37L4.57 11.03C4.53 11.35 4.5 11.67 4.5 12S4.53 12.65 4.57 12.97L2.46 14.63C2.27 14.78 2.21 15.05 2.34 15.27L4.34 18.73C4.46 18.95 4.73 19.03 4.95 18.95L7.44 17.94C7.96 18.34 8.5 18.68 9.13 18.93L9.5 21.58C9.54 21.82 9.75 22 10 22H14C14.25 22 14.46 21.82 14.5 21.58L14.87 18.93C15.5 18.67 16.04 18.34 16.56 17.94L19.05 18.95C19.27 19.03 19.54 18.95 19.66 18.73L21.66 15.27C21.78 15.05 21.73 14.78 21.54 14.63L19.43 12.97Z" fill="currentColor"/></symbol><symbol id="icon-logout" viewBox="0 0 24 24"><path d="M16 17V14H9V10H16V7L21 12L16 17M14 2C15.1 2 16 2.9 16 4V6H14V4H5V20H14V18H16V20C16 21.1 15.1 22 14 22H5C3.9 22 3 21.1 3 20V4C3 2.9 3.9 2 5 2H14Z" fill="currentColor"/></symbol></defs></svg>
+    <style>
+        .student-photo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--border-color);
+        }
+        
+        .student-photo-placeholder {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            border: 2px solid var(--border-color);
+        }
+        
+        .profile-photo-upload-modal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            border-radius: 8px;
+            border: 2px dashed var(--border-color);
+            margin-bottom: 15px;
+        }
+        
+        .profile-photo-preview-modal {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: white;
+            overflow: hidden;
+            border: 3px solid white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .profile-photo-preview-modal img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+    <link rel="stylesheet" href="./sponsors-carousel.css">
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo bounce-animation"><img class="logo-img" src="./assets/logo/taekwondo-sbeitla.png" alt="Taekwondo Sbeitla" /></div>
+                <h2>Taekwondo Sbeitla</h2>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="admin-dashboard.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-dashboard"/></svg></span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="student-management.html" class="nav-item active">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-users"/></svg></span>
+                    <span>Students</span>
+                </a>
+                <a href="parent-management.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-family"/></svg></span>
+                    <span>Parents</span>
+                </a>
+                <a href="messages.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-message"/></svg></span>
+                    <span>Messages</span>
+                    <span class="message-badge" id="sidebarMessageBadge"></span>
+                </a>
+                <a href="attendance.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-check"/></svg></span>
+                    <span>Attendance</span>
+                </a>
+                <a href="class-schedule.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-calendar"/></svg></span>
+                    <span>Schedule</span>
+                </a>
+                <a href="settings.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-settings"/></svg></span>
+                    <span>Settings</span>
+                </a>
+                <a href="index.html" class="nav-item logout">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-logout"/></svg></span>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <header class="page-header">
+                <h1>👥 Student Management</h1>
+                <div style="display:flex; gap:8px; align-items:center;">
+                    <button class="btn btn-primary" id="addStudentBtn">➕ Add New Student</button>
+                </div>
+            </header>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2>All Students</h2>
+                    <div class="search-box">
+                        <input type="text" id="searchStudent" placeholder="Search students...">
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Photo</th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Belt Rank</th>
+                                <th>Class</th>
+                                <th>Parent</th>
+                                <th>Join Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentList">
+                            <!-- Populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Add/Edit Student Modal -->
+    <div id="studentModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Add New Student</h2>
+                <span class="close" id="closeModal">&times;</span>
+            </div>
+            <form id="studentForm">
+                <div class="modal-body">
+                    <!-- Profile Photo Upload -->
+                    <div class="profile-photo-upload-modal">
+                        <div class="profile-photo-preview-modal" id="studentPhotoPreview">
+                            👤
+                        </div>
+                        <button type="button" class="btn btn-secondary btn-small" id="uploadStudentPhoto">
+                            📷 Upload Profile Photo
+                        </button>
+                        <input type="file" id="studentPhotoInput" accept="image/png, image/jpeg, image/jpg" style="display: none;">
+                        <p style="font-size: 12px; color: var(--text-secondary); margin: 0;">
+                            Optional: Add a profile photo (PNG, JPG)
+                        </p>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="studentName">Full Name *</label>
+                            <input type="text" id="studentName" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="studentAge">Age *</label>
+                            <input type="number" id="studentAge" min="5" max="100" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="studentBelt">Belt Rank *</label>
+                            <select id="studentBelt" required>
+                                <option value="">Select Belt</option>
+                                <option value="White">White Belt</option>
+                                <option value="Yellow">Yellow Belt</option>
+                                <option value="Green">Green Belt</option>
+                                <option value="Blue">Blue Belt</option>
+                                <option value="Red">Red Belt</option>
+                                <option value="Black">Black Belt</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="studentClass">Class *</label>
+                            <select id="studentClass" required>
+                                <option value="">Select Class</option>
+                                <option value="Beginner">Beginner Class</option>
+                                <option value="Intermediate">Intermediate Class</option>
+                                <option value="Advanced">Advanced Class</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="studentEmail">Email *</label>
+                            <input type="email" id="studentEmail" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="studentPhone">Phone *</label>
+                            <input type="tel" id="studentPhone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="studentUsername">Username * (for login)</label>
+                            <input type="text" id="studentUsername" required>
+                            <small style="color: var(--text-secondary); font-size: 12px; display: block; margin-top: 5px;">
+                                This username will be used for student login
+                            </small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="studentPassword">Password * (for login)</label>
+                            <input type="password" id="studentPassword" required minlength="6">
+                            <small style="color: var(--text-secondary); font-size: 12px; display: block; margin-top: 5px;">
+                                Set a password for this student (minimum 6 characters)
+                            </small>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="linkedParent">Link to Parent Account</label>
+                        <select id="linkedParent">
+                            <option value="">No parent linked</option>
+                        </select>
+                        <small style="color: var(--text-secondary); font-size: 12px; display: block; margin-top: 5px;">
+                            Select a parent account to link this student. If no parents are shown, please add parents first in the Parents section.
+                        </small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="parentName">Parent/Guardian Name (Info Only)</label>
+                        <input type="text" id="parentName" placeholder="For display purposes">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="parentContact">Parent/Guardian Contact (Info Only)</label>
+                        <input type="tel" id="parentContact" placeholder="For display purposes">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="joinDate">Join Date *</label>
+                        <input type="date" id="joinDate" required>
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Student</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script type="module" src="./script.js"></script>
+    <script type="module" src="./online-status.js"></script>
+    <script>
+        // Check if user is admin
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser || currentUser.role !== 'admin') {
+            alert('Access denied! Only administrators can view this page.');
+            window.location.href = 'index.html';
+        }
+        
+        let editingStudentId = null;
+        let studentPhotoData = null;
+        
+        // Profile photo upload handler
+        document.getElementById('uploadStudentPhoto').addEventListener('click', function() {
+            document.getElementById('studentPhotoInput').click();
+        });
+        
+        document.getElementById('studentPhotoInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    studentPhotoData = e.target.result;
+                    document.getElementById('studentPhotoPreview').innerHTML = `<img src="${studentPhotoData}" alt="Student Photo">`;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                alert('⚠️ Please select a valid image file (PNG, JPG)');
+            }
+        });
+        
+        // Unique key helper based on username/email, fallback to id
+        function getStudentKey(s) {
+            const u = (s && s.username) ? s.username.trim().toLowerCase() : '';
+            const e = (s && s.email) ? s.email.trim().toLowerCase() : '';
+            if (u) return `u:${u}`;
+            if (e) return `e:${e}`;
+            return `id:${s && s.id ? s.id : ''}`;
+        }
+
+        // Blocklist helpers to prevent re-sync of deleted students
+        function getBlockedStudents() {
+            const list = JSON.parse(localStorage.getItem('blockedStudents') || '[]');
+            return Array.isArray(list) ? list : [];
+        }
+        function saveBlockedStudents(list) {
+            localStorage.setItem('blockedStudents', JSON.stringify(list));
+        }
+        function getAllStudentKeys(s) {
+            const keys = [];
+            const u = (s && s.username) ? s.username.trim().toLowerCase() : '';
+            const e = (s && s.email) ? s.email.trim().toLowerCase() : '';
+            const id = s && s.id ? String(s.id) : '';
+            if (u) keys.push(`u:${u}`);
+            if (e) keys.push(`e:${e}`);
+            if (id) keys.push(`id:${id}`);
+            return keys;
+        }
+        // Id-only block key helper
+        function getIdKey(sOrId) {
+            const id = typeof sOrId === 'object' ? (sOrId && sOrId.id) : sOrId;
+            const sid = id === undefined || id === null ? '' : String(id);
+            return sid ? `id:${sid}` : '';
+        }
+
+        // Merge duplicate student records (prefer richer data)
+        function dedupeStudents() {
+            let students = JSON.parse(localStorage.getItem('students') || '[]');
+            if (!Array.isArray(students) || students.length === 0) return;
+            const map = new Map();
+            students.forEach(s => {
+                const key = getStudentKey(s);
+                if (!map.has(key)) {
+                    map.set(key, { ...s });
+                } else {
+                    const cur = map.get(key);
+                    const merged = {
+                        ...cur,
+                        id: cur.id || s.id,
+                        name: s.name && s.name.length > (cur.name || '').length ? s.name : cur.name,
+                        email: cur.email || s.email || '',
+                        username: cur.username || s.username || '',
+                        password: cur.password || s.password || '',
+                        phone: cur.phone || s.phone || '',
+                        age: cur.age || s.age || '',
+                        beltRank: cur.beltRank || s.beltRank || 'White',
+                        class: cur.class || s.class || 'Beginner',
+                        parentName: cur.parentName || s.parentName || '',
+                        parentContact: cur.parentContact || s.parentContact || '',
+                        joinDate: cur.joinDate || s.joinDate || new Date().toISOString().split('T')[0],
+                        profilePhoto: cur.profilePhoto || s.profilePhoto || null
+                    };
+                    map.set(key, merged);
+                }
+            });
+            const next = Array.from(map.values());
+            localStorage.setItem('students', JSON.stringify(next));
+        }
+        
+        // Defensive sync: ensure approved students are present in Student Management without duplicates
+        function syncStudentsFromApprovedUsers() {
+            let students = JSON.parse(localStorage.getItem('students') || '[]');
+            const approvedUsers = JSON.parse(localStorage.getItem('approvedUsers') || '[]');
+            const approvedStudents = approvedUsers.filter(u => u.role === 'student');
+            const blocked = new Set(getBlockedStudents());
+
+            const map = new Map();
+            students.forEach(s => map.set(getStudentKey(s), { ...s }));
+
+            let changed = false;
+            approvedStudents.forEach(u => {
+                const candidate = {
+                    id: u.id || Date.now().toString(),
+                    name: u.name || u.username || 'New Student',
+                    email: u.email || '',
+                    username: u.username || '',
+                    password: u.password || '',
+                    phone: u.phone || '',
+                    age: u.age || '',
+                    beltRank: u.beltRank || 'White',
+                    class: u.class || 'Beginner',
+                    parentName: u.parentName || '',
+                    parentContact: u.parentContact || '',
+                    joinDate: u.joinDate || new Date().toISOString().split('T')[0],
+                    profilePhoto: u.profilePhoto || null
+                };
+                // Skip re-sync if blocked by id key only
+                const idKey = getIdKey(candidate);
+                if (idKey && blocked.has(idKey)) {
+                    return; // do not add/merge blocked student
+                }
+                const key = getStudentKey(candidate);
+                if (map.has(key)) {
+                    const cur = map.get(key);
+                    map.set(key, {
+                        ...cur,
+                        id: cur.id || candidate.id,
+                        name: candidate.name && candidate.name.length > (cur.name || '').length ? candidate.name : cur.name,
+                        email: cur.email || candidate.email,
+                        username: cur.username || candidate.username,
+                        password: cur.password || candidate.password,
+                        phone: cur.phone || candidate.phone,
+                        age: cur.age || candidate.age,
+                        beltRank: cur.beltRank || candidate.beltRank,
+                        class: cur.class || candidate.class,
+                        parentName: cur.parentName || candidate.parentName,
+                        parentContact: cur.parentContact || candidate.parentContact,
+                        joinDate: cur.joinDate || candidate.joinDate,
+                        profilePhoto: cur.profilePhoto || candidate.profilePhoto
+                    });
+                } else {
+                    map.set(key, candidate);
+                }
+                changed = true;
+            });
+
+            if (changed) {
+                const next = Array.from(map.values());
+                localStorage.setItem('students', JSON.stringify(next));
+            }
+            // Final pass to ensure no duplicates remain
+            dedupeStudents();
+        }
+        
+        // Load all students
+        function loadStudents() {
+            // Ensure students list includes any approved users and remove duplicates
+            syncStudentsFromApprovedUsers();
+            dedupeStudents();
+            
+            const students = JSON.parse(localStorage.getItem('students') || '[]');
+            const parents = JSON.parse(localStorage.getItem('parents') || '[]');
+            const studentList = document.getElementById('studentList');
+            
+            if (students.length === 0) {
+                studentList.innerHTML = '<tr><td colspan="8" style="text-align: center; padding: 40px; color: var(--text-secondary);">No students registered yet</td></tr>';
+                return;
+            }
+            
+            studentList.innerHTML = students.map(student => {
+                // Find parent linked to this student
+                const linkedParent = parents.find(p => p.children && p.children.includes(student.id));
+                const parentName = linkedParent ? linkedParent.name : (student.parentName || 'Not linked');
+                
+                // Generate photo HTML
+                const photoHTML = student.profilePhoto 
+                    ? `<img src="${student.profilePhoto}" alt="${student.name}" class="student-photo">`
+                    : `<div class="student-photo-placeholder">👤</div>`;
+                
+                return `
+                    <tr>
+                        <td>${photoHTML}</td>
+                        <td>${student.id.substring(0, 8)}</td>
+                        <td>${student.name}</td>
+                        <td><span class="badge badge-success">${student.beltRank}</span></td>
+                        <td>${student.class}</td>
+                        <td>${parentName}</td>
+                        <td>${new Date(student.joinDate).toLocaleDateString()}</td>
+                        <td>
+                            <button class="btn btn-secondary btn-small" onclick="editStudent('${student.id}')">✏️ Edit</button>
+                            <button class="btn btn-danger btn-small" onclick="deleteStudent('${student.id}')">🗑️ Delete</button>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+        
+        // Load parents for dropdown - FIXED VERSION
+        function loadParentsDropdown(selectedParentId = '') {
+            const parents = JSON.parse(localStorage.getItem('parents') || '[]');
+            const dropdown = document.getElementById('linkedParent');
+            
+            console.log('Loading parents dropdown. Total parents:', parents.length);
+            
+            if (!dropdown) {
+                console.error('Parent dropdown element not found!');
+                return;
+            }
+            
+            // Clear existing options
+            dropdown.innerHTML = '<option value="">No parent linked</option>';
+            
+            if (parents.length === 0) {
+                console.warn('No parents found in localStorage');
+                dropdown.innerHTML += '<option value="" disabled>No parents available - Add parents first</option>';
+                return;
+            }
+            
+            // Add each parent as an option
+            parents.forEach(parent => {
+                const option = document.createElement('option');
+                option.value = parent.id;
+                option.textContent = `${parent.name} (${parent.email})`;
+                if (parent.id === selectedParentId) {
+                    option.selected = true;
+                }
+                dropdown.appendChild(option);
+            });
+            
+            console.log('Parent dropdown populated with', parents.length, 'parents');
+        }
+        
+        // Open modal for adding student
+        document.getElementById('addStudentBtn').addEventListener('click', function() {
+            editingStudentId = null;
+            studentPhotoData = null;
+            document.getElementById('modalTitle').textContent = 'Add New Student';
+            document.getElementById('studentForm').reset();
+            document.getElementById('studentPhotoPreview').innerHTML = '👤';
+            document.getElementById('joinDate').valueAsDate = new Date();
+            loadParentsDropdown();
+            document.getElementById('studentModal').classList.add('active');
+        });
+        
+        // Edit student
+        window.editStudent = function(id) {
+            const students = JSON.parse(localStorage.getItem('students') || '[]');
+            const parents = JSON.parse(localStorage.getItem('parents') || '[]');
+            const student = students.find(s => s.id === id);
+            
+            if (!student) return;
+            
+            editingStudentId = id;
+            studentPhotoData = student.profilePhoto || null;
+            
+            document.getElementById('modalTitle').textContent = 'Edit Student';
+            document.getElementById('studentName').value = student.name;
+            document.getElementById('studentAge').value = student.age;
+            document.getElementById('studentBelt').value = student.beltRank;
+            document.getElementById('studentClass').value = student.class;
+            document.getElementById('studentEmail').value = student.email;
+            document.getElementById('studentPhone').value = student.phone;
+            document.getElementById('studentUsername').value = student.username || '';
+            document.getElementById('studentPassword').value = student.password || '';
+            document.getElementById('parentName').value = student.parentName || '';
+            document.getElementById('parentContact').value = student.parentContact || '';
+            document.getElementById('joinDate').value = student.joinDate;
+            
+            // Set photo preview
+            if (student.profilePhoto) {
+                document.getElementById('studentPhotoPreview').innerHTML = `<img src="${student.profilePhoto}" alt="Student Photo">`;
+            } else {
+                document.getElementById('studentPhotoPreview').innerHTML = '👤';
+            }
+            
+            // Find linked parent
+            const linkedParent = parents.find(p => p.children && p.children.includes(id));
+            loadParentsDropdown(linkedParent ? linkedParent.id : '');
+            
+            document.getElementById('studentModal').classList.add('active');
+        };
+        
+        // Delete student - remove only the selected id
+        window.deleteStudent = function(id) {
+            if (!confirm('Are you sure you want to delete this student? This will remove them from all systems including login access.')) {
+                return;
+            }
+
+            // Current students before deletion to capture identity
+            let students = JSON.parse(localStorage.getItem('students') || '[]');
+            const target = students.find(s => s.id === id) || null;
+
+            // Normalize helper for safe matching across string/number cases
+            const norm = v => (v === undefined || v === null) ? '' : String(v).trim().toLowerCase();
+            const targetId = norm(id);
+            const targetUsername = target ? norm(target.username) : '';
+            const targetEmail = target ? norm(target.email) : '';
+
+            // Remove only the student with matching id
+            students = students.filter(s => norm(s.id) !== targetId);
+            localStorage.setItem('students', JSON.stringify(students));
+
+            // Remove from parent's children list
+            let parents = JSON.parse(localStorage.getItem('parents') || '[]');
+            parents.forEach(parent => {
+                if (parent.children) {
+                    parent.children = parent.children.filter(childId => norm(childId) !== targetId);
+                }
+            });
+            localStorage.setItem('parents', JSON.stringify(parents));
+
+            // Remove matching approved student account (role student) by id or exact identity
+            let approvedUsers = JSON.parse(localStorage.getItem('approvedUsers') || '[]');
+            approvedUsers = approvedUsers.filter(u => {
+                if (u.role !== 'student') return true;
+                const matchById = norm(u.id) === targetId;
+                const matchByUsername = targetUsername && norm(u.username) === targetUsername;
+                const matchByEmail = targetEmail && norm(u.email) === targetEmail;
+                return !(matchById || matchByUsername || matchByEmail);
+            });
+            localStorage.setItem('approvedUsers', JSON.stringify(approvedUsers));
+
+            // Final pass to avoid accidental re-adds
+            dedupeStudents();
+
+            // Block by id only to avoid impacting other users
+            const idKey2 = getIdKey(target || id);
+            if (idKey2) {
+                const blocked = new Set(getBlockedStudents());
+                blocked.add(idKey2);
+                saveBlockedStudents(Array.from(blocked));
+            }
+
+            alert('✅ Student deleted successfully from all systems!');
+            loadStudents();
+        };
+        
+        // Close modal
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('studentModal').classList.remove('active');
+        });
+        
+        document.getElementById('cancelBtn').addEventListener('click', function() {
+            document.getElementById('studentModal').classList.remove('active');
+        });
+        
+        // Form submission
+        document.getElementById('studentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('studentName').value;
+            const age = document.getElementById('studentAge').value;
+            const beltRank = document.getElementById('studentBelt').value;
+            const studentClass = document.getElementById('studentClass').value;
+            const email = document.getElementById('studentEmail').value;
+            const phone = document.getElementById('studentPhone').value;
+            const username = document.getElementById('studentUsername').value;
+            const password = document.getElementById('studentPassword').value;
+            const parentName = document.getElementById('parentName').value;
+            const parentContact = document.getElementById('parentContact').value;
+            const joinDate = document.getElementById('joinDate').value;
+            const linkedParentId = document.getElementById('linkedParent').value;
+            
+            if (!username || !password) {
+                alert('⚠️ Username and password are required for student login access!');
+                return;
+            }
+            
+            if (password.length < 6) {
+                alert('⚠️ Password must be at least 6 characters long!');
+                return;
+            }
+            
+            let students = JSON.parse(localStorage.getItem('students') || '[]');
+            let parents = JSON.parse(localStorage.getItem('parents') || '[]');
+            
+            const candidate = {
+                id: editingStudentId || Date.now().toString(),
+                name,
+                age,
+                beltRank,
+                class: studentClass,
+                email,
+                phone,
+                username,
+                password,
+                parentName,
+                parentContact,
+                joinDate,
+                profilePhoto: studentPhotoData
+            };
+            const key = getStudentKey(candidate);
+            const idx = students.findIndex(s => getStudentKey(s) === key || s.id === editingStudentId);
+            let finalId = candidate.id;
+            if (idx !== -1) {
+                finalId = students[idx].id || candidate.id;
+                students[idx] = {
+                    ...students[idx],
+                    ...candidate,
+                    id: finalId
+                };
+            } else {
+                students.push(candidate);
+            }
+            dedupeStudents();
+            
+            // Update parent linkage - remove from all parents first
+            parents.forEach(parent => {
+                if (parent.children) {
+                    parent.children = parent.children.filter(childId => childId !== finalId);
+                }
+            });
+            // Add to selected parent
+            if (linkedParentId) {
+                const parent = parents.find(p => p.id === linkedParentId);
+                if (parent) {
+                    if (!parent.children) parent.children = [];
+                    if (!parent.children.includes(finalId)) {
+                        parent.children.push(finalId);
+                    }
+                }
+            }
+            
+            localStorage.setItem('students', JSON.stringify(students));
+            localStorage.setItem('parents', JSON.stringify(parents));
+            
+            // Upsert into approvedUsers
+            let approvedUsers = JSON.parse(localStorage.getItem('approvedUsers') || '[]');
+            const aIdx = approvedUsers.findIndex(u => u.role === 'student' && getStudentKey(u) === key);
+            const approvedCandidate = {
+                id: finalId,
+                role: 'student',
+                name,
+                email,
+                username,
+                password,
+                phone,
+                age,
+                beltRank,
+                class: studentClass,
+                parentName,
+                parentContact,
+                joinDate,
+                profilePhoto: studentPhotoData
+            };
+            if (aIdx !== -1) {
+                approvedUsers[aIdx] = { ...approvedUsers[aIdx], ...approvedCandidate };
+            } else {
+                approvedUsers.push(approvedCandidate);
+            }
+            // Deduplicate approvedUsers by username/email for students
+            const aMap = new Map();
+            approvedUsers.forEach(u => {
+                if (u.role !== 'student') return; // only dedupe students here
+                const k = getStudentKey(u);
+                if (!aMap.has(k)) aMap.set(k, u);
+                else aMap.set(k, { ...aMap.get(k), ...u });
+            });
+            // Preserve non-student users
+            const nonStudents = approvedUsers.filter(u => u.role !== 'student');
+            approvedUsers = [...nonStudents, ...Array.from(aMap.values())];
+            localStorage.setItem('approvedUsers', JSON.stringify(approvedUsers));
+            
+            alert('✅ Student saved successfully with login credentials!');
+            document.getElementById('studentModal').classList.remove('active');
+            loadStudents();
+        });
+        
+        // Search functionality
+        document.getElementById('searchStudent').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#studentList tr');
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(searchTerm) ? '' : 'none';
+            });
+        });
+        
+        // Load students on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadStudents();
+        });
+    </script>
+    <script src="./sponsors-carousel.js"></script>
+</body>
+
+ 
+
+</html>

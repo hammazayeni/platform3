@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./assets/logo/taekwondo-sbeitla.png" type="image/png" sizes="50x50">
+    <title>Attendance Tracker - Taekwondo Sbeitla</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./sponsors-carousel.css">
+    <svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <symbol id="icon-taekwondo" viewBox="0 0 24 24"><path d="M12 2C10.9 2 10 2.9 10 4C10 5.1 10.9 6 12 6C13.1 6 14 5.1 14 4C14 2.9 13.1 2 12 2M15.9 8.1C15.5 7.7 14.8 7.7 14.4 8.1L12 10.5L9.6 8.1C9.2 7.7 8.5 7.7 8.1 8.1C7.7 8.5 7.7 9.2 8.1 9.6L10 11.5V15L8 20H10L12 16L14 20H16L14 15V11.5L15.9 9.6C16.3 9.2 16.3 8.5 15.9 8.1M6 18C6 18 4 13 4 11C4 9.9 4.9 9 6 9V18M18 18V9C19.1 9 20 9.9 20 11C20 13 18 18 18 18Z" fill="currentColor"/></symbol>
+            <symbol id="icon-dashboard" viewBox="0 0 24 24"><path d="M3 13H11V3H3M3 21H11V15H3M13 21H21V11H13M13 3V9H21V3" fill="currentColor"/></symbol>
+            <symbol id="icon-message" viewBox="0 0 24 24"><path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2M20 16H6L4 18V4H20V16M7 9H17V11H7V9M7 6H17V8H7V6M7 12H14V14H7V12Z" fill="currentColor"/></symbol>
+            <symbol id="icon-calendar" viewBox="0 0 24 24"><path d="M19 4H18V2H16V4H8V2H6V4H5C3.89 4 3 4.9 3 6V20C3 21.1 3.89 22 5 22H19C20.1 22 21 21.1 21 20V6C21 4.9 20.1 4 19 4M19 20H5V10H19V20M19 8H5V6H19V8M7 12H12V17H7V12Z" fill="currentColor"/></symbol>
+            <symbol id="icon-logout" viewBox="0 0 24 24"><path d="M16 17V14H9V10H16V7L21 12L16 17M14 2C15.1 2 16 2.9 16 4V6H14V4H5V20H14V18H16V20C16 21.1 15.1 22 14 22H5C3.9 22 3 21.1 3 20V4C3 2.9 3.9 2 5 2H14Z" fill="currentColor"/></symbol>
+            <symbol id="icon-users" viewBox="0 0 24 24"><path d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z" fill="currentColor"/></symbol>
+            <symbol id="icon-check" viewBox="0 0 24 24"><path d="M21 7L9 19L3.5 13.5L4.91 12.09L9 16.17L19.59 5.59L21 7Z" fill="currentColor"/></symbol>
+            <symbol id="icon-announcement" viewBox="0 0 24 24"><path d="M12 8H4C3.45 8 3 8.45 3 9V15C3 15.55 3.45 16 4 16H5V19C5 19.55 5.45 20 6 20H8C8.55 20 9 19.55 9 19V16H12L17 18V6L12 8M21.5 12C21.5 13.71 20.54 15.26 19 16V8C20.53 8.75 21.5 10.3 21.5 12Z" fill="currentColor"/></symbol>
+            <symbol id="icon-family" viewBox="0 0 24 24"><path d="M16 4C16 2.9 16.9 2 18 2S20 2.9 20 4 19.1 6 18 6 16 5.1 16 4M6 4C6 2.9 6.9 2 8 2S10 2.9 10 4 9.1 6 8 6 6 5.1 6 4M12 8C11.4 8 11 8.4 11 9V11H9V9C9 8.4 8.6 8 8 8S7 8.4 7 9V15H9V22H11V15H13V22H15V15H17V9C17 8.4 16.6 8 16 8S15 8.4 15 9V11H13V9C13 8.4 12.6 8 12 8M4 9V15H6V22H8V9H4M16 9V22H18V15H20V9H16Z" fill="currentColor"/></symbol>
+            <symbol id="icon-register" viewBox="0 0 24 24"><path d="M19 3H14.82C14.4 1.84 13.3 1 12 1S9.6 1.84 9.18 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3M12 3C12.55 3 13 3.45 13 4S12.55 5 12 5 11 4.55 11 4 11.45 3 12 3M7 7H17V9H7V7M7 11H17V13H7V11M7 15H14V17H7V15Z" fill="currentColor"/></symbol>
+            <symbol id="icon-settings" viewBox="0 0 24 24"><path d="M12 15.5C10.07 15.5 8.5 13.93 8.5 12S10.07 8.5 12 8.5 15.5 10.07 15.5 12 13.93 15.5 12 15.5M19.43 12.97C19.47 12.65 19.5 12.33 19.5 12S19.47 11.35 19.43 11.03L21.54 9.37C21.73 9.22 21.78 8.95 21.66 8.73L19.66 5.27C19.54 5.05 19.27 4.96 19.05 5.05L16.56 6.05C16.04 5.66 15.5 5.5 14.78 5.65L13.5 3.6C13.36 3.39 13.12 3.28 12.88 3.28H11.12C10.88 3.28 10.64 3.39 10.5 3.6L9.22 5.65C8.5 5.5 7.96 5.66 7.44 6.05L4.95 5.05C4.73 4.96 4.46 5.05 4.34 5.27L2.34 8.73C2.22 8.95 2.27 9.22 2.46 9.37L4.57 11.03C4.53 11.35 4.5 11.67 4.5 12S4.53 12.65 4.57 12.97L2.46 14.63C2.27 14.78 2.22 15.05 2.34 15.27L4.34 18.73C4.46 18.95 4.73 19.04 4.95 18.95L7.44 17.95C7.96 18.34 8.5 18.5 9.22 18.35L10.5 20.4C10.64 20.61 10.88 20.72 11.12 20.72H12.88C13.12 20.72 13.36 20.61 13.5 20.4L14.78 18.35C15.5 18.5 16.04 18.34 16.56 17.95L19.05 18.95C19.27 19.04 19.54 18.95 19.66 18.73L21.66 15.27C21.78 15.05 21.73 14.78 21.54 14.63L19.43 12.97Z" fill="currentColor"/></symbol>
+        </defs>
+    </svg>
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo bounce-animation"><img class="logo-img" src="./assets/logo/taekwondo-sbeitla.png" alt="Taekwondo Sbeitla" /></div>
+                <h2>Taekwondo Sbeitla</h2>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="admin-dashboard.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-dashboard"/></svg></span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="student-management.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-users"/></svg></span>
+                    <span>Students</span>
+                </a>
+                <a href="parent-management.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-family"/></svg></span>
+                    <span>Parents</span>
+                </a>
+                <a href="pending-registrations.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-register"/></svg></span>
+                    <span>Registrations</span>
+                    <span class="message-badge" id="pendingBadge"></span>
+                </a>
+                <a href="messages.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-message"/></svg></span>
+                    <span>Messages</span>
+                    <span class="message-badge" id="sidebarMessageBadge"></span>
+                </a>
+                <a href="attendance.html" class="nav-item active">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-check"/></svg></span>
+                    <span>Attendance</span>
+                </a>
+                <a href="class-schedule.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-calendar"/></svg></span>
+                    <span>Schedule</span>
+                </a>
+                <a href="settings.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-settings"/></svg></span>
+                    <span>Settings</span>
+                </a>
+                <a href="index.html" class="nav-item logout">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-logout"/></svg></span>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <header class="page-header">
+                <h1><svg width="24" height="24" style="margin-right:8px; vertical-align:middle;"><use href="#icon-check"/></svg>Attendance Tracker</h1>
+                <div class="user-info">
+                    <span>Master Admin</span>
+                </div>
+            </header>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2>Mark Attendance</h2>
+                </div>
+                <div class="card-body">
+                    <div class="attendance-filters">
+                        <div class="form-group">
+                            <label for="classSelect">Select Class</label>
+                            <select id="classSelect">
+                                <option value="all">All Students</option>
+                                <option value="Beginner">Beginner Class</option>
+                                <option value="Intermediate">Intermediate Class</option>
+                                <option value="Advanced">Advanced Class</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="dateSelect">Date</label>
+                            <input type="date" id="dateSelect">
+                        </div>
+                        
+                        <button class="btn btn-primary" id="loadStudents">Load Students</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card" id="attendanceCard" style="display: none;">
+                <div class="card-header">
+                    <h2>Student Attendance</h2>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn btn-success btn-small" id="markAllPresent">Mark All Present</button>
+                        <button class="btn btn-danger btn-small" id="markAllAbsent">Mark All Absent</button>
+                        <button class="btn btn-primary" id="saveAttendance">Save Attendance</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="student-cards-grid" id="studentCardsGrid">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2><svg width="18" height="18" style="margin-right:6px;"><use href="#icon-dashboard"/></svg>Attendance History</h2>
+                </div>
+                <div class="card-body">
+                    <div class="attendance-filters">
+                        <div class="form-group">
+                            <label for="historyClass">Filter by Class</label>
+                            <select id="historyClass">
+                                <option value="all">All Classes</option>
+                                <option value="Beginner">Beginner Class</option>
+                                <option value="Intermediate">Intermediate Class</option>
+                                <option value="Advanced">Advanced Class</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="historyDate">Filter by Date</label>
+                            <input type="date" id="historyDate">
+                        </div>
+                        
+                        <button class="btn btn-secondary" id="filterHistory">Filter</button>
+                    </div>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Class</th>
+                                <th>Total Students</th>
+                                <th>Present</th>
+                                <th>Absent</th>
+                                <th>Attendance Rate</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyList">
+                            <!-- Populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script type="module" src="./script.js"></script>
+    <script>
+        // Check if user is admin
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser || currentUser.role !== 'admin') {
+            alert('Access denied! Only administrators can access attendance management.');
+            window.location.href = 'index.html';
+        }
+        
+        let currentAttendance = {};
+        let loadedStudents = [];
+        
+        // Set today's date as default
+        document.getElementById('dateSelect').valueAsDate = new Date();
+        
+        // Load students from localStorage
+        document.getElementById('loadStudents').addEventListener('click', function() {
+            const classType = document.getElementById('classSelect').value;
+            const allStudents = JSON.parse(localStorage.getItem('students') || '[]');
+            
+            if (allStudents.length === 0) {
+                alert('⚠️ No students found in the system. Please add students first.');
+                return;
+            }
+            
+            // Filter by class if not "all"
+            loadedStudents = classType === 'all' ? allStudents : allStudents.filter(s => s.class === classType);
+            
+            if (loadedStudents.length === 0) {
+                alert('⚠️ No students found for the selected class.');
+                return;
+            }
+            
+            const container = document.getElementById('studentCardsGrid');
+            currentAttendance = {};
+            
+            const colors = [
+                'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+                'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+                'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+                'linear-gradient(135deg, #30cfd0 0%, #330867 100%)'
+            ];
+            
+            container.innerHTML = loadedStudents.map((student, index) => {
+                currentAttendance[student.id] = 'present'; // Default to present
+                const initials = student.name.split(' ').map(n => n[0]).join('').toUpperCase();
+                const color = colors[index % colors.length];
+                
+                return `
+                    <div class="student-attendance-card" data-student-id="${student.id}">
+                        <div class="student-card-header">
+                            <div class="student-card-avatar" style="background: ${color}">
+                                ${initials}
+                            </div>
+                            <div class="student-card-info">
+                                <h4>${student.name}</h4>
+                                <p>${student.beltRank || 'White'} Belt</p>
+                                <p style="font-size: 12px; color: var(--text-secondary);">${student.class} Class</p>
+                            </div>
+                        </div>
+                        <div class="attendance-toggle">
+                            <button class="present active" onclick="markAttendance('${student.id}', 'present')">
+                                ✓ Present
+                            </button>
+                            <button class="absent" onclick="markAttendance('${student.id}', 'absent')">
+                                ✗ Absent
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            
+            document.getElementById('attendanceCard').style.display = 'block';
+        });
+        
+        // Mark attendance for individual student
+        window.markAttendance = function(studentId, status) {
+            currentAttendance[studentId] = status;
+            
+            // Update button styles
+            const card = document.querySelector(`[data-student-id="${studentId}"]`);
+            const buttons = card.querySelectorAll('.attendance-toggle button');
+            
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            if (status === 'present') {
+                card.querySelector('.present').classList.add('active');
+            } else {
+                card.querySelector('.absent').classList.add('active');
+            }
+        };
+        
+        // Mark all present
+        document.getElementById('markAllPresent').addEventListener('click', function() {
+            loadedStudents.forEach(student => {
+                markAttendance(student.id, 'present');
+            });
+        });
+        
+        // Mark all absent
+        document.getElementById('markAllAbsent').addEventListener('click', function() {
+            loadedStudents.forEach(student => {
+                markAttendance(student.id, 'absent');
+            });
+        });
+        
+        // Save attendance
+        document.getElementById('saveAttendance').addEventListener('click', function() {
+            const classType = document.getElementById('classSelect').value;
+            const date = document.getElementById('dateSelect').value;
+            
+            if (!date) {
+                alert('⚠️ Please select a date.');
+                return;
+            }
+            
+            // Count present and absent
+            const presentCount = Object.values(currentAttendance).filter(s => s === 'present').length;
+            const absentCount = Object.values(currentAttendance).filter(s => s === 'absent').length;
+            const totalCount = loadedStudents.length;
+            const rate = Math.round((presentCount / totalCount) * 100);
+            
+            // Save to localStorage
+            let attendanceHistory = JSON.parse(localStorage.getItem('attendanceHistory') || '[]');
+            
+            const attendanceRecord = {
+                id: Date.now().toString(),
+                date: date,
+                class: classType === 'all' ? 'All Classes' : classType + ' Class',
+                total: totalCount,
+                present: presentCount,
+                absent: absentCount,
+                rate: rate,
+                details: currentAttendance,
+                timestamp: new Date().toISOString()
+            };
+            
+            attendanceHistory.unshift(attendanceRecord);
+            localStorage.setItem('attendanceHistory', JSON.stringify(attendanceHistory));
+            
+            alert(`✅ Attendance saved successfully!\n\nPresent: ${presentCount}\nAbsent: ${absentCount}\nRate: ${rate}%`);
+            loadAttendanceHistory();
+        });
+        
+        // Load attendance history
+        function loadAttendanceHistory() {
+            const history = JSON.parse(localStorage.getItem('attendanceHistory') || '[]');
+            const historyList = document.getElementById('historyList');
+            
+            if (history.length === 0) {
+                historyList.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 40px; color: var(--text-secondary);">No attendance records yet</td></tr>';
+                return;
+            }
+            
+            historyList.innerHTML = history.map(record => {
+                const badgeClass = record.rate >= 90 ? 'badge-success' : record.rate >= 75 ? 'badge-warning' : 'badge-danger';
+                
+                return `
+                    <tr>
+                        <td>${new Date(record.date).toLocaleDateString()}</td>
+                        <td>${record.class}</td>
+                        <td>${record.total}</td>
+                        <td>${record.present}</td>
+                        <td>${record.absent}</td>
+                        <td><span class="badge ${badgeClass}">${record.rate}%</span></td>
+                    </tr>
+                `;
+            }).join('');
+        }
+        
+        // Filter history
+        document.getElementById('filterHistory').addEventListener('click', function() {
+            const classFilter = document.getElementById('historyClass').value;
+            const dateFilter = document.getElementById('historyDate').value;
+            
+            let history = JSON.parse(localStorage.getItem('attendanceHistory') || '[]');
+            
+            if (classFilter !== 'all') {
+                history = history.filter(r => r.class.includes(classFilter));
+            }
+            
+            if (dateFilter) {
+                history = history.filter(r => r.date === dateFilter);
+            }
+            
+            const historyList = document.getElementById('historyList');
+            
+            if (history.length === 0) {
+                historyList.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 40px; color: var(--text-secondary);">No records found for the selected filters</td></tr>';
+                return;
+            }
+            
+            historyList.innerHTML = history.map(record => {
+                const badgeClass = record.rate >= 90 ? 'badge-success' : record.rate >= 75 ? 'badge-warning' : 'badge-danger';
+                
+                return `
+                    <tr>
+                        <td>${new Date(record.date).toLocaleDateString()}</td>
+                        <td>${record.class}</td>
+                        <td>${record.total}</td>
+                        <td>${record.present}</td>
+                        <td>${record.absent}</td>
+                        <td><span class="badge ${badgeClass}">${record.rate}%</span></td>
+                    </tr>
+                `;
+            }).join('');
+        });
+        
+        // Load history on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadAttendanceHistory();
+        });
+    </script>
+    
+    <style>
+        .attendance-toggle button.active {
+            opacity: 1 !important;
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .attendance-toggle button {
+            opacity: 0.5;
+        }
+    </style>
+    <script src="./sponsors-carousel.js"></script>
+</body>
+
+    
+
+</html>

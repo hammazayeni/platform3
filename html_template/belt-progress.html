@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./assets/logo/taekwondo-sbeitla.png" type="image/png" sizes="50x50">
+    <title>Belt Progress Management - Taekwondo Sbeitla</title>
+    <link rel="stylesheet" href="./style.css">
+    <svg style="display: none;" xmlns="http://www.w3.org/2000/svg"><defs><symbol id="icon-dashboard" viewBox="0 0 24 24"><path d="M3 13H11V3H3M3 21H11V15H3M13 21H21V11H13M13 3V9H21V3" fill="currentColor"/></symbol><symbol id="icon-users" viewBox="0 0 24 24"><path d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z" fill="currentColor"/></symbol><symbol id="icon-check" viewBox="0 0 24 24"><path d="M21 7L9 19L3.5 13.5L4.91 12.09L9 16.17L19.59 5.59L21 7Z" fill="currentColor"/></symbol><symbol id="icon-calendar" viewBox="0 0 24 24"><path d="M19 4H18V2H16V4H8V2H6V4H5C3.89 4 3 4.9 3 6V20C3 21.1 3.89 22 5 22H19C20.1 22 21 21.1 21 20V6C21 4.9 20.1 4 19 4M19 20H5V10H19V20M19 8H5V6H19V8M7 12H12V17H7V12Z" fill="currentColor"/></symbol><symbol id="icon-settings" viewBox="0 0 24 24"><path d="M12 15.5C10.07 15.5 8.5 13.93 8.5 12S10.07 8.5 12 8.5 15.5 10.07 15.5 12 13.93 15.5 12 15.5M19.43 12.97C19.47 12.65 19.5 12.33 19.5 12S19.47 11.35 19.43 11.03L21.54 9.37C21.73 9.22 21.78 8.95 21.66 8.73L19.66 5.27C19.54 5.05 19.27 4.96 19.05 5.05L16.56 6.05C16.04 5.66 15.5 5.32 14.87 5.07L14.5 2.42C14.46 2.18 14.25 2 14 2H10C9.75 2 9.54 2.18 9.5 2.42L9.13 5.07C8.5 5.32 7.96 5.66 7.44 6.05L4.95 5.05C4.73 4.96 4.46 5.05 4.34 5.27L2.34 8.73C2.21 8.95 2.27 9.22 2.46 9.37L4.57 11.03C4.53 11.35 4.5 11.67 4.5 12S4.53 12.65 4.57 12.97L2.46 14.63C2.27 14.78 2.21 15.05 2.34 15.27L4.34 18.73C4.46 18.95 4.73 19.03 4.95 18.95L7.44 17.94C7.96 18.34 8.5 18.68 9.13 18.93L9.5 21.58C9.54 21.82 9.75 22 10 22H14C14.25 22 14.46 21.82 14.5 21.58L14.87 18.93C15.5 18.67 16.04 18.34 16.56 17.94L19.05 18.95C19.27 19.03 19.54 18.95 19.66 18.73L21.66 15.27C21.78 15.05 21.73 14.78 21.54 14.63L19.43 12.97Z" fill="currentColor"/></symbol><symbol id="icon-logout" viewBox="0 0 24 24"><path d="M16 17V14H9V10H16V7L21 12L16 17M14 2C15.1 2 16 2.9 16 4V6H14V4H5V20H14V18H16V20C16 21.1 15.1 22 14 22H5C3.9 22 3 21.1 3 20V4C3 2.9 3.9 2 5 2H14Z" fill="currentColor"/></symbol><symbol id="icon-trophy" viewBox="0 0 24 24"><path d="M20 2H4V4C4 5.1 4.9 6 6 6V7C6 9.76 8.24 12 11 12V14.5C8.79 14.78 7 16.79 7 19H9C9 17.34 10.34 16 12 16S15 17.34 15 19H17C17 16.79 15.21 14.78 13 14.5V12C15.76 12 18 9.76 18 7V6C19.1 6 20 5.1 20 4V2M6 4H8V7C8 8.65 9.35 10 11 10V4H13V10C14.65 10 16 8.65 16 7V4H18V4C18 4.55 17.55 5 17 5H16V7C16 8.65 14.65 10 13 10C11.35 10 10 8.65 10 7V5H9C8.45 5 8 4.55 8 4H6V4Z" fill="currentColor"/></symbol></defs></svg>
+    <link rel="stylesheet" href="./sponsors-carousel.css">
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo bounce-animation"><img class="logo-img" src="./assets/logo/taekwondo-sbeitla.png" alt="Taekwondo Sbeitla" /></div>
+                <h2>Taekwondo Sbeitla</h2>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="admin-dashboard.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-dashboard"/></svg></span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="user-management.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-users"/></svg></span>
+                    <span>User Management</span>
+                </a>
+                <a href="student-management.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-users"/></svg></span>
+                    <span>Students</span>
+                </a>
+                <a href="belt-progress.html" class="nav-item active">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-trophy"/></svg></span>
+                    <span>Belt Progress</span>
+                </a>
+                <a href="attendance.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-check"/></svg></span>
+                    <span>Attendance</span>
+                </a>
+                <a href="class-schedule.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-calendar"/></svg></span>
+                    <span>Schedule</span>
+                </a>
+                <a href="settings.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-settings"/></svg></span>
+                    <span>Settings</span>
+                </a>
+                <a href="index.html" class="nav-item logout">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-logout"/></svg></span>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <header class="page-header">
+                <h1>🏆 Belt Progress Management</h1>
+                <div class="user-info">
+                    <span>Welcome, Master Admin</span>
+                </div>
+            </header>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2>Student Belt Rankings</h2>
+                    <div class="search-box">
+                        <input type="text" id="searchStudent" placeholder="Search students...">
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div id="studentBeltList">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Belt Promotion Modal -->
+    <div id="promotionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>🏆 Promote Student</h2>
+                <span class="close" id="closeModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="promotion-preview">
+                    <div class="belt-progression">
+                        <div class="current-belt">
+                            <h3>Current Belt</h3>
+                            <div class="belt-display" id="currentBeltDisplay">
+                                <div class="belt-icon">🥋</div>
+                                <p id="currentBeltName">White Belt</p>
+                            </div>
+                        </div>
+                        <div class="arrow">→</div>
+                        <div class="next-belt">
+                            <h3>Next Belt</h3>
+                            <div class="belt-display" id="nextBeltDisplay">
+                                <div class="belt-icon">🥋</div>
+                                <p id="nextBeltName">Yellow Belt</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <form id="promotionForm">
+                    <div class="form-group">
+                        <label for="promotionDate">Promotion Date *</label>
+                        <input type="date" id="promotionDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="promotionNotes">Notes (Optional)</label>
+                        <textarea id="promotionNotes" rows="3" placeholder="Add any notes about this promotion..."></textarea>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="cancelPromotion">Cancel</button>
+                        <button type="submit" class="btn btn-success">🏆 Confirm Promotion</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script type="module" src="./script.js"></script>
+    <script>
+        // Check if user is admin
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser || currentUser.role !== 'admin') {
+            alert('Access denied! Only administrators can manage belt progress.');
+            window.location.href = 'index.html';
+        }
+        
+        const beltOrder = ['White', 'Yellow', 'Green', 'Blue', 'Red', 'Black'];
+        const beltColors = {
+            'White': '#f8f9fa',
+            'Yellow': '#ffd700',
+            'Green': '#28a745',
+            'Blue': '#007bff',
+            'Red': '#dc3545',
+            'Black': '#212529'
+        };
+        
+        let selectedStudent = null;
+        
+        // Set today's date as default
+        document.getElementById('promotionDate').valueAsDate = new Date();
+        
+        // Load students with belt progress
+        function loadStudentBelts() {
+            const students = JSON.parse(localStorage.getItem('students') || '[]');
+            const container = document.getElementById('studentBeltList');
+            
+            if (students.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 40px; color: var(--text-secondary);">
+                        <div style="font-size: 48px; margin-bottom: 15px;">🥋</div>
+                        <p>No students found</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = students.map(student => {
+                const currentBelt = student.beltRank || 'White';
+                const currentIndex = beltOrder.indexOf(currentBelt);
+                const nextBelt = currentIndex < beltOrder.length - 1 ? beltOrder[currentIndex + 1] : null;
+                const progress = ((currentIndex + 1) / beltOrder.length) * 100;
+                
+                return `
+                    <div class="student-belt-card">
+                        <div class="student-belt-header">
+                            <div class="student-belt-avatar">
+                                ${student.name.split(' ').map(n => n[0]).join('').toUpperCase()}
+                            </div>
+                            <div class="student-belt-info">
+                                <h3>${student.name}</h3>
+                                <p>${student.class} Class</p>
+                            </div>
+                            <div class="current-belt-badge" style="background: ${beltColors[currentBelt]}; color: ${currentBelt === 'White' || currentBelt === 'Yellow' ? '#000' : '#fff'};">
+                                🥋 ${currentBelt} Belt
+                            </div>
+                        </div>
+                        
+                        <div class="belt-progress-bar">
+                            <div class="progress-fill" style="width: ${progress}%; background: linear-gradient(90deg, ${beltColors[currentBelt]}, ${nextBelt ? beltColors[nextBelt] : beltColors[currentBelt]});"></div>
+                        </div>
+                        
+                        <div class="belt-progress-info">
+                            <p>Progress: ${currentIndex + 1} / ${beltOrder.length} belts</p>
+                            ${nextBelt ? `<p>Next: ${nextBelt} Belt</p>` : '<p>🏆 Maximum Rank Achieved!</p>'}
+                        </div>
+                        
+                        <div class="belt-actions">
+                            ${nextBelt ? `
+                                <button class="btn btn-success btn-small" onclick="openPromotionModal('${student.id}')">
+                                    🏆 Promote to ${nextBelt} Belt
+                                </button>
+                            ` : ''}
+                            <button class="btn btn-secondary btn-small" onclick="viewBeltHistory('${student.id}')">
+                                📜 View History
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+        
+        // Open promotion modal
+        window.openPromotionModal = function(studentId) {
+            const students = JSON.parse(localStorage.getItem('students') || '[]');
+            selectedStudent = students.find(s => s.id === studentId);
+            
+            if (!selectedStudent) return;
+            
+            const currentBelt = selectedStudent.beltRank || 'White';
+            const currentIndex = beltOrder.indexOf(currentBelt);
+            const nextBelt = beltOrder[currentIndex + 1];
+            
+            document.getElementById('currentBeltName').textContent = currentBelt + ' Belt';
+            document.getElementById('currentBeltDisplay').querySelector('.belt-display').style.background = beltColors[currentBelt];
+            
+            document.getElementById('nextBeltName').textContent = nextBelt + ' Belt';
+            document.getElementById('nextBeltDisplay').querySelector('.belt-display').style.background = beltColors[nextBelt];
+            
+            document.getElementById('promotionModal').classList.add('active');
+        };
+        
+        // Close modal
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('promotionModal').classList.remove('active');
+        });
+        
+        document.getElementById('cancelPromotion').addEventListener('click', function() {
+            document.getElementById('promotionModal').classList.remove('active');
+        });
+        
+        // Handle promotion
+        document.getElementById('promotionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!selectedStudent) return;
+            
+            const currentBelt = selectedStudent.beltRank || 'White';
+            const currentIndex = beltOrder.indexOf(currentBelt);
+            const nextBelt = beltOrder[currentIndex + 1];
+            
+            const promotionDate = document.getElementById('promotionDate').value;
+            const notes = document.getElementById('promotionNotes').value;
+            
+            // Update student belt rank
+            let students = JSON.parse(localStorage.getItem('students') || '[]');
+            const studentIndex = students.findIndex(s => s.id === selectedStudent.id);
+            
+            if (studentIndex !== -1) {
+                students[studentIndex].beltRank = nextBelt;
+                
+                // Initialize belt history if not exists
+                if (!students[studentIndex].beltHistory) {
+                    students[studentIndex].beltHistory = [];
+                }
+                
+                // Add to belt history
+                students[studentIndex].beltHistory.push({
+                    from: currentBelt,
+                    to: nextBelt,
+                    date: promotionDate,
+                    notes: notes,
+                    timestamp: new Date().toISOString()
+                });
+                
+                localStorage.setItem('students', JSON.stringify(students));
+                
+                alert(`🏆 Congratulations! ${selectedStudent.name} has been promoted to ${nextBelt} Belt!`);
+                
+                document.getElementById('promotionModal').classList.remove('active');
+                document.getElementById('promotionForm').reset();
+                document.getElementById('promotionDate').valueAsDate = new Date();
+                
+                loadStudentBelts();
+            }
+        });
+        
+        // View belt history
+        window.viewBeltHistory = function(studentId) {
+            const students = JSON.parse(localStorage.getItem('students') || '[]');
+            const student = students.find(s => s.id === studentId);
+            
+            if (!student) return;
+            
+            const history = student.beltHistory || [];
+            
+            if (history.length === 0) {
+                alert('No promotion history available for this student.');
+                return;
+            }
+            
+            let historyText = `Belt Promotion History for ${student.name}\n\n`;
+            history.forEach((record, index) => {
+                historyText += `${index + 1}. ${record.from} → ${record.to}\n`;
+                historyText += `   Date: ${new Date(record.date).toLocaleDateString()}\n`;
+                if (record.notes) {
+                    historyText += `   Notes: ${record.notes}\n`;
+                }
+                historyText += '\n';
+            });
+            
+            alert(historyText);
+        };
+        
+        // Search functionality
+        document.getElementById('searchStudent').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.student-belt-card');
+            
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                card.style.display = text.includes(searchTerm) ? 'block' : 'none';
+            });
+        });
+        
+        // Load on page load
+        document.addEventListener('DOMContentLoaded', loadStudentBelts);
+    </script>
+    
+    <style>
+        .student-belt-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .student-belt-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+        
+        .student-belt-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .student-belt-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .student-belt-info {
+            flex: 1;
+        }
+        
+        .student-belt-info h3 {
+            margin: 0 0 5px 0;
+            font-size: 18px;
+        }
+        
+        .student-belt-info p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        
+        .current-belt-badge {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .belt-progress-bar {
+            height: 12px;
+            background: #e2e8f0;
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            transition: width 0.3s;
+        }
+        
+        .belt-progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+        
+        .belt-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .promotion-preview {
+            margin-bottom: 30px;
+        }
+        
+        .belt-progression {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+        }
+        
+        .belt-display {
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .belt-icon {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        .belt-display p {
+            margin: 0;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .arrow {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+    </style>
+    <script src="./sponsors-carousel.js"></script>
+</body>
+
+</html>

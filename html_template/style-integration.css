@@ -1,0 +1,69 @@
+/* This file integrates enhanced styles into the existing style.css */
+/* Import this after style.css in your HTML files */
+
+/* Override existing sidebar styles with enhanced gradients */
+.sidebar {
+    background: linear-gradient(180deg, #1e293b 0%, #0f172a 50%, #1e293b 100%) !important;
+    background-size: 100% 200% !important;
+    animation: gradientShift 10s ease infinite !important;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Override main content background */
+.main-content {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f8fafc 100%) !important;
+    background-size: 200% 200% !important;
+    animation: gradientShift 15s ease infinite !important;
+}
+
+/* Override stat cards */
+.stat-card {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%) !important;
+    border: 1px solid rgba(102, 126, 234, 0.2) !important;
+}
+
+/* Override profile card */
+.profile-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%) !important;
+    background-size: 200% 200% !important;
+    animation: gradientShift 8s ease infinite, glow 3s ease-in-out infinite !important;
+}
+
+/* Override buttons */
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    background-size: 200% 200% !important;
+    animation: gradientShift 3s ease infinite !important;
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+    background-size: 200% 200% !important;
+    animation: gradientShift 3s ease infinite !important;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+    background-size: 200% 200% !important;
+    animation: gradientShift 3s ease infinite !important;
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
+    background-size: 200% 200% !important;
+    animation: gradientShift 3s ease infinite !important;
+}
+
+/* Override landing page */
+.landing-body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%) !important;
+    background-size: 200% 200% !important;
+    animation: gradientShift 10s ease infinite !important;
+}
+
+/* Override login page */
+.login-page {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%) !important;
+    background-size: 200% 200% !important;
+    animation: gradientShift 10s ease infinite !important;
+}

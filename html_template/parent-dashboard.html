@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./assets/logo/taekwondo-sbeitla.png" type="image/png" sizes="50x50">
+    <title>Parent Dashboard - Taekwondo Sbeitla</title>
+    <link rel="stylesheet" href="./style.css">
+    <svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <symbol id="icon-taekwondo" viewBox="0 0 24 24">
+                <path d="M12 2C10.9 2 10 2.9 10 4C10 5.1 10.9 6 12 6C13.1 6 14 5.1 14 4C14 2.9 13.1 2 12 2M15.9 8.1C15.5 7.7 14.8 7.7 14.4 8.1L12 10.5L9.6 8.1C9.2 7.7 8.5 7.7 8.1 8.1C7.7 8.5 7.7 9.2 8.1 9.6L10 11.5V15L8 20H10L12 16L14 20H16L14 15V11.5L15.9 9.6C16.3 9.2 16.3 8.5 15.9 8.1M6 18C6 18 4 13 4 11C4 9.9 4.9 9 6 9V18M18 18V9C19.1 9 20 9.9 20 11C20 13 18 18 18 18Z" fill="currentColor"/>
+            </symbol>
+            <symbol id="icon-dashboard" viewBox="0 0 24 24">
+                <path d="M3 13H11V3H3M3 21H11V15H3M13 21H21V11H13M13 3V9H21V3" fill="currentColor"/>
+            </symbol>
+            <symbol id="icon-users" viewBox="0 0 24 24">
+                <path d="M16 17V19H2V17S2 13 9 13 16 17 16 17M12.5 7.5A3.5 3.5 0 1 0 9 11A3.5 3.5 0 0 0 12.5 7.5M15.94 13A5.32 5.32 0 0 1 18 17V19H22V17S22 13.37 15.94 13M15 4A3.39 3.39 0 0 0 13.07 4.59A5 5 0 0 1 13.07 10.41A3.39 3.39 0 0 0 15 11A3.5 3.5 0 0 0 15 4Z" fill="currentColor"/>
+            </symbol>
+            <symbol id="icon-message" viewBox="0 0 24 24">
+                <path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2M20 16H6L4 18V4H20V16M7 9H17V11H7V9M7 6H17V8H7V6M7 12H14V14H7V12Z" fill="currentColor"/>
+            </symbol>
+            <symbol id="icon-calendar" viewBox="0 0 24 24">
+                <path d="M19 4H18V2H16V4H8V2H6V4H5C3.89 4 3 4.9 3 6V20C3 21.1 3.89 22 5 22H19C20.1 22 21 21.1 21 20V6C21 4.9 20.1 4 19 4M19 20H5V10H19V20M19 8H5V6H19V8M7 12H12V17H7V12Z" fill="currentColor"/>
+            </symbol>
+            <symbol id="icon-logout" viewBox="0 0 24 24">
+                <path d="M16 17V14H9V10H16V7L21 12L16 17M14 2C15.1 2 16 2.9 16 4V6H14V4H5V20H14V18H16V20C16 21.1 15.1 22 14 22H5C3.9 22 3 21.1 3 20V4C3 2.9 3.9 2 5 2H14Z" fill="currentColor"/>
+            </symbol>
+            <symbol id="icon-check" viewBox="0 0 24 24">
+                <path d="M21 7L9 19L3.5 13.5L4.91 12.09L9 16.17L19.59 5.59L21 7Z" fill="currentColor"/>
+            </symbol>
+            <symbol id="icon-announcement" viewBox="0 0 24 24">
+                <path d="M12 8H4C3.45 8 3 8.45 3 9V15C3 15.55 3.45 16 4 16H5V19C5 19.55 5.45 20 6 20H8C8.55 20 9 19.55 9 19V16H12L17 18V6L12 8M21.5 12C21.5 13.71 20.54 15.26 19 16V8C20.53 8.75 21.5 10.3 21.5 12Z" fill="currentColor"/>
+            </symbol>
+            <symbol id="icon-family" viewBox="0 0 24 24">
+                <path d="M16 4C16 2.9 16.9 2 18 2S20 2.9 20 4 19.1 6 18 6 16 5.1 16 4M6 4C6 2.9 6.9 2 8 2S10 2.9 10 4 9.1 6 8 6 6 5.1 6 4M12 8C11.4 8 11 8.4 11 9V11H9V9C9 8.4 8.6 8 8 8S7 8.4 7 9V15H9V22H11V15H13V22H15V15H17V9C17 8.4 16.6 8 16 8S15 8.4 15 9V11H13V9C13 8.4 12.6 8 12 8M4 9V15H6V22H8V9H4M16 9V22H18V15H20V9H16Z" fill="currentColor"/>
+            </symbol>
+            <symbol id="icon-register" viewBox="0 0 24 24">
+                <path d="M19 3H14.82C14.4 1.84 13.3 1 12 1S9.6 1.84 9.18 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3M12 3C12.55 3 13 3.45 13 4S12.55 5 12 5 11 4.55 11 4 11.45 3 12 3M7 7H17V9H7V7M7 11H17V13H7V11M7 15H14V17H7V15Z" fill="currentColor"/>
+            </symbol>
+            <symbol id="icon-settings" viewBox="0 0 24 24">
+                <path d="M12 15.5C10.07 15.5 8.5 13.93 8.5 12S10.07 8.5 12 8.5 15.5 10.07 15.5 12 13.93 15.5 12 15.5M19.43 12.97C19.47 12.65 19.5 12.33 19.5 12S19.47 11.35 19.43 11.03L21.54 9.37C21.73 9.22 21.78 8.95 21.66 8.73L19.66 5.27C19.54 5.05 19.27 4.96 19.05 5.05L16.56 6.05C16.04 5.66 15.5 5.5 14.78 5.65L13.5 3.6C13.36 3.39 13.12 3.28 12.88 3.28H11.12C10.88 3.28 10.64 3.39 10.5 3.6L9.22 5.65C8.5 5.5 7.96 5.66 7.44 6.05L4.95 5.05C4.73 4.96 4.46 5.05 4.34 5.27L2.34 8.73C2.22 8.95 2.27 9.22 2.46 9.37L4.57 11.03C4.53 11.35 4.5 11.67 4.5 12S4.53 12.65 4.57 12.97L2.46 14.63C2.27 14.78 2.22 15.05 2.34 15.27L4.34 18.73C4.46 18.95 4.73 19.04 4.95 18.95L7.44 17.95C7.96 18.34 8.5 18.5 9.22 18.35L10.5 20.4C10.64 20.61 10.88 20.72 11.12 20.72H12.88C13.12 20.72 13.36 20.61 13.5 20.4L14.78 18.35C15.5 18.5 16.04 18.34 16.56 17.95L19.05 18.95C19.27 19.04 19.54 18.95 19.66 18.73L21.66 15.27C21.78 15.05 21.73 14.78 21.54 14.63L19.43 12.97Z" fill="currentColor"/>
+            </symbol>
+        </defs>
+    </svg>
+    <!-- Lottie Web for animated icons (AnimatedIcons) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+    <script src="./icon-loader.js"></script>
+    <style>
+        /* Image viewer modal (copied from student dashboard for consistency) */
+        .image-viewer-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .image-viewer-modal.active { display: flex; }
+        .image-viewer-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .image-viewer-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 36px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .image-viewer-close:hover { opacity: 0.8; }
+        
+        .child-item {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo bounce-animation"><img class="logo-img" src="./assets/logo/taekwondo-sbeitla.png" alt="Taekwondo Sbeitla" /></div>
+                <h2>Taekwondo Sbeitla</h2>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="parent-dashboard.html" class="nav-item active">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-dashboard"/></svg></span>
+                    <span>Dashboard</span>
+                </a>
+                <a href="messages.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-message"/></svg></span>
+                    <span>Messages</span>
+                    <span class="message-badge" id="sidebarMessageBadge"></span>
+                </a>
+                <a href="class-schedule.html" class="nav-item">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-calendar"/></svg></span>
+                    <span>Schedule</span>
+                </a>
+                <a href="index.html" class="nav-item logout">
+                    <span class="icon"><svg width="20" height="20"><use href="#icon-logout"/></svg></span>
+                    <span>Logout</span>
+                </a>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <header class="page-header">
+                <h1><svg width="24" height="24" style="margin-right:8px; vertical-align:middle;"><use href="#icon-dashboard"/></svg>Parent Dashboard</h1>
+                <div class="user-info">
+                    <span id="parentName">Welcome, Parent</span>
+                    <span class="online-indicator" title="You are online"><svg width="12" height="12"><use href="#icon-users"/></svg></span>
+                </div>
+            </header>
+            
+            <!-- Profile Section (NO Upload Button for Parents) -->
+            <div class="profile-section">
+                <div class="profile-card">
+                    <div class="profile-avatar" id="parentAvatar"><svg width="64" height="64"><use href="#icon-users"/></svg></div>
+                    <div class="profile-info">
+                        <h2 id="parentFullName">Parent User</h2>
+                        <p class="member-since"><strong>Member Since:</strong> <span id="memberSince">January 2024</span></p>
+                        <div class="children-list" id="childrenList">
+                            <p><strong>Children:</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Announcements Section -->
+            <div class="announcements-section">
+                <div class="card">
+                    <div class="card-header">
+                        <h2><span class="icon"><svg width="18" height="18" style="margin-right:6px;"><use href="#icon-announcement"/></svg></span> Latest Announcements</h2>
+                    </div>
+            <div class="card-body" id="announcementsList">
+                <p style="text-align: center; color: var(--text-secondary); padding: 20px;">No announcements yet</p>
+            </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2><svg width="18" height="18" style="margin-right:6px;"><use href="#icon-users"/></svg> My Children's Progress</h2>
+                </div>
+                <div class="card-body">
+                    <div class="student-records-list" id="childrenProgress"></div>
+                </div>
+            </div>
+            
+            <div class="content-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h2><svg width="18" height="18" style="margin-right:6px;"><use href="#icon-calendar"/></svg> Upcoming Classes</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="class-list" id="upcomingClassesList"></div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h2><svg width="18" height="18" style="margin-right:6px;"><use href="#icon-dashboard"/></svg> Overall Statistics</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="stats-grid" style="grid-template-columns: 1fr;">
+                            <div class="stat-card">
+                                <div class="stat-icon"><svg width="28" height="28"><use href="#icon-users"/></svg></div>
+                                <div class="stat-info">
+                                    <h3>Total Children</h3>
+                                    <p class="stat-value" id="totalChildrenStat">0</p>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-card">
+                                <div class="stat-icon"><svg width="28" height="28"><use href="#icon-check"/></svg></div>
+                                <div class="stat-info">
+                                    <h3>Average Attendance</h3>
+                                    <p class="stat-value" id="avgAttendanceStat">0%</p>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-card">
+                                <div class="stat-icon"><svg width="28" height="28"><use href="#icon-dashboard"/></svg></div>
+                                <div class="stat-info">
+                                    <h3>Belt Tests This Year</h3>
+                                    <p class="stat-value" id="beltTestsStat">0</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="./profile-sync.js"></script>
+    <script src="./attendance-calculator.js"></script>
+    <script src="./parent-dashboard-profile.js"></script>
+    <script type="module" src="./script.js"></script>
+    <script type="module" src="./online-status.js"></script>
+    <script type="module" src="./messages.js"></script>
+    <script>
+        // Load parent profile
+        function loadParentProfile() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            const savedUsers = JSON.parse(localStorage.getItem('users') || '{}');
+            const parents = JSON.parse(localStorage.getItem('parents') || '[]');
+            
+            if (currentUser) {
+                document.getElementById('parentName').textContent = `Welcome, ${currentUser.name}`;
+                document.getElementById('parentFullName').textContent = currentUser.name;
+                
+        // Find parent data
+        const parentData = parents.find(p => p.username === currentUser.username || p.id === currentUser.id || p.email === currentUser.email);
+
+        // Render parent avatar photo from managed record if available
+        try {
+            const avatarEl = document.getElementById('parentAvatar') || document.getElementById('parentPhoto') || document.querySelector('.profile-photo');
+            if (avatarEl) {
+                const managedPhoto = parentData && parentData.profilePhoto ? parentData.profilePhoto : null;
+                const defaultParentImage = (savedUsers.parent && savedUsers.parent.image) ? savedUsers.parent.image : null;
+                if (managedPhoto) {
+                    avatarEl.innerHTML = `<img src="${managedPhoto}" alt="Parent Avatar" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
+                } else if (defaultParentImage) {
+                    avatarEl.innerHTML = `<img src="${defaultParentImage}" alt="Parent Avatar" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">`;
+                } else {
+                    avatarEl.innerHTML = `<svg width="64" height="64"><use href="#icon-users"/></svg>`;
+                }
+            }
+        } catch (e) {
+            // Silent fail to avoid breaking dashboard if structure differs
+            console.warn('Avatar render skipped:', e);
+        }
+                
+                if (parentData && parentData.children && parentData.children.length > 0) {
+                    const childrenList = document.getElementById('childrenList');
+                    const students = JSON.parse(localStorage.getItem('students') || '[]');
+                    
+                    const childrenHTML = parentData.children.map(childId => {
+                        const child = students.find(s => s.id === childId);
+                        if (!child) return '';
+                        
+                        const childPhotoHTML = child.profilePhoto 
+                            ? `<img src="${child.profilePhoto}" alt="${child.name}" style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover;">`
+                            : '👤';
+                        
+                        return `<div class="child-item">${childPhotoHTML} <strong>${child.name}</strong> - ${child.beltRank || 'White'} Belt</div>`;
+                    }).join('');
+                    
+                    childrenList.innerHTML = `<p><strong>Children:</strong></p>${childrenHTML}`;
+                }
+
+                const students = JSON.parse(localStorage.getItem('students') || '[]');
+                const linkedChildren = parentData && parentData.children ? parentData.children.map(id => students.find(s => s.id === id)).filter(Boolean) : [];
+                const progressEl = document.getElementById('childrenProgress');
+                const classesEl = document.getElementById('upcomingClassesList');
+                const totalChildrenEl = document.getElementById('totalChildrenStat');
+                const avgAttendanceEl = document.getElementById('avgAttendanceStat');
+                const beltTestsEl = document.getElementById('beltTestsStat');
+
+                if (totalChildrenEl) totalChildrenEl.textContent = linkedChildren.length;
+
+                if (linkedChildren.length === 0) {
+                    if (progressEl) progressEl.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 20px;">No children linked yet</p>';
+                    if (classesEl) classesEl.innerHTML = '';
+                    if (avgAttendanceEl) avgAttendanceEl.textContent = '0%';
+                    if (beltTestsEl) beltTestsEl.textContent = '0';
+                    return;
+                }
+
+                const progressHTML = linkedChildren.map(child => {
+                    const rate = typeof calculateStudentAttendanceRate === 'function' ? calculateStudentAttendanceRate(child.id) : 0;
+                    const statusBadge = '<span class="badge badge-success">Active</span>';
+                    return `
+                        <div class="student-record-card">
+                            <div class="student-record-header">
+                                <h4>${child.name}</h4>
+                                ${statusBadge}
+                            </div>
+                            <div class="student-record-details">
+                                <p><strong>Belt Rank:</strong> ${child.beltRank || 'White Belt'}</p>
+                                <p><strong>Attendance:</strong> ${rate}%</p>
+                                <p><strong>Class:</strong> ${child.class || '—'}</p>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+                if (progressEl) progressEl.innerHTML = progressHTML;
+
+                const classesHTML = linkedChildren.map(child => `
+                    <div class="class-item">
+                        <div class="class-info">
+                            <h4>${child.class || 'Class'}</h4>
+                            <p>${child.name} - ${child.beltRank || 'White Belt'}</p>
+                        </div>
+                    </div>
+                `).join('');
+                if (classesEl) classesEl.innerHTML = classesHTML;
+
+                const avg = Math.round(linkedChildren.reduce((sum, c) => sum + (typeof calculateStudentAttendanceRate === 'function' ? calculateStudentAttendanceRate(c.id) : 0), 0) / linkedChildren.length);
+                if (avgAttendanceEl) avgAttendanceEl.textContent = `${isNaN(avg) ? 0 : avg}%`;
+                if (beltTestsEl) beltTestsEl.textContent = '0';
+            }
+        }
+        
+        // Load announcements with images (click to view full size)
+        function loadAnnouncements() {
+            const announcements = JSON.parse(localStorage.getItem('announcements') || '[]');
+            const announcementsList = document.getElementById('announcementsList');
+            
+            if (announcements.length === 0) {
+                announcementsList.innerHTML = '<p style="text-align: center; color: var(--text-secondary); padding: 20px;">No announcements yet</p>';
+                return;
+            }
+            
+            announcementsList.innerHTML = announcements.map(announcement => `
+                <div class="announcement-card">
+                    <div class="announcement-header">
+                        <span class="announcement-icon"><svg width="18" height="18"><use href="#icon-announcement"/></svg></span>
+                        <h3 class="announcement-title">${announcement.title}</h3>
+                    </div>
+                    ${announcement.image ? `<img src="${announcement.image}" alt="${announcement.title}" class="announcement-image" style="width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; margin: 15px 0; cursor: pointer;" onclick="openImageViewer('${announcement.image}')" title="Click to view full size">` : ''}
+                    <p class="announcement-description">${announcement.description}</p>
+                    <p class="announcement-date"><svg width="16" height="16" style="margin-right:6px; vertical-align:middle;"><use href="#icon-calendar"/></svg>${announcement.date}</p>
+                </div>
+            `).join('');
+            const imgs = announcementsList.querySelectorAll('.announcement-image');
+            imgs.forEach(img => {
+                img.addEventListener('click', () => openImageViewer(img.src));
+            });
+        }
+        
+        // Load on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadParentProfile();
+            loadAnnouncements();
+            // Refresh immediately when admin posts an announcement
+            window.addEventListener('announcementPosted', loadAnnouncements);
+            
+            // Refresh announcements every 30 seconds
+            setInterval(loadAnnouncements, 30000);
+        });
+        
+        // Image viewer functions
+        window.openImageViewer = function(imageSrc) {
+            const modal = document.getElementById('imageViewerModal');
+            const img = document.getElementById('imageViewerContent');
+            modal.classList.add('active');
+            img.src = imageSrc;
+        };
+        
+        window.closeImageViewer = function() {
+            const modal = document.getElementById('imageViewerModal');
+            modal.classList.remove('active');
+        };
+        
+        // Close modal when clicking outside the image
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('imageViewerModal');
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        closeImageViewer();
+                    }
+                });
+            }
+        });
+    </script>
+    
+    <!-- Image Viewer Modal -->
+    <div id="imageViewerModal" class="image-viewer-modal">
+        <span class="image-viewer-close" onclick="closeImageViewer()">&times;</span>
+        <img id="imageViewerContent" class="image-viewer-content" alt="Full size image">
+    </div>
+    <script src="./sponsors.js"></script>
+    
+</body>
+
+</html>
